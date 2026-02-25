@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+.pnp
+.pnp.js
+
+# Env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build artifacts
+dist/
+build/
+out/
+.next/
+storybook-static/
+coverage/
+*.tsbuildinfo
+
+# Turbo / task caches
+.turbo/
+**/.turbo/
+
+# Panda generated files
+packages/solid/styled-system/
+packages/solid/styled-system-studio/
+apps/*/styled-system/
+apps/*/styled-system-studio/
+
+# Deployment
+.vercel/
+
+# Logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*storybook.log
+
+# Editor / OS
+.DS_Store
+.idea/
+*.pem

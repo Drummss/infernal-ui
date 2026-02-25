@@ -1,0 +1,34 @@
+{
+  "$schema": "https://v2-8-10.turborepo.dev/schema.json",
+  "ui": "tui",
+  "globalDependencies": ["biome.json", "pnpm-workspace.yaml"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [
+        "dist/**",
+        "css/**",
+        "jsx/**",
+        "patterns/**",
+        "tokens/**",
+        "types/**",
+        "helpers.mjs",
+        "styles.css",
+        "styled-system/**"
+      ]
+    },
+    "build-storybook": {
+      "dependsOn": ["^build"],
+      "outputs": ["storybook-static/**"]
+    },
+    "check-types": {
+      "dependsOn": ["^check-types"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "interruptible": true
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "infernal-ui",
+  "private": true,
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "biome lint .",
+    "format": "biome check --write .",
+    "check-types": "turbo run check-types",
+    "ci:check": "turbo run check-types build --output-logs=new-only",
+    "ci:affected": "turbo run check-types build --affected --output-logs=new-only"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.4",
+    "turbo": "^2.8.10",
+    "typescript": "5.9.3"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "pnpm": {
+    "overrides": {
+      "vitefu": "^1.1.1"
+    }
+  }
+}

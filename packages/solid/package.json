@@ -1,0 +1,64 @@
+{
+  "name": "@infernalui/solid",
+  "version": "0.0.0",
+  "license": "Apache-2.0",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "types"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components.js"
+    },
+    "./panda.buildinfo.json": "./dist/panda.buildinfo.json",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "dev": "pnpm run build:extract:watch",
+    "build": "pnpm run build:js && pnpm run build:types && pnpm run build:extract",
+    "build:js": "vite build -c vite.lib.config.ts",
+    "build:types": "tsc -p tsconfig.build.json",
+    "build:extract": "panda ship \"components/**/*.{ts,tsx}\" --outfile dist/panda.buildinfo.json",
+    "build:extract:watch": "panda ship \"components/**/*.{ts,tsx}\" --watch --outfile dist/panda.buildinfo.json",
+    "check-types": "pnpm run build:types && tsc -p tsconfig.build.json --noEmit",
+    "prepack": "pnpm run build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^5.0.1",
+    "@pandacss/dev": "^1.8.2",
+    "@storybook/addon-a11y": "^10.2.9",
+    "@storybook/addon-docs": "^10.2.9",
+    "@storybook/addon-links": "^10.2.9",
+    "@storybook/addon-vitest": "^10.2.9",
+    "@storybook/builder-vite": "^10.2.9",
+    "@vitest/browser": "^4.0.18",
+    "@vitest/browser-playwright": "^4.0.18",
+    "@vitest/coverage-v8": "^4.0.18",
+    "playwright": "^1.58.2",
+    "solid-js": "^1.9.11",
+    "storybook": "^10.2.9",
+    "storybook-solidjs-vite": "^10.0.9",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-solid": "^2.11.10",
+    "vitest": "^4.0.18"
+  },
+  "dependencies": {
+    "@infernalui/styled-system": "workspace:*",
+    "@ark-ui/solid": "^5.31.0"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.9.11"
+  }
+}

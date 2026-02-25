@@ -1,0 +1,31 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "outDir": "./dist",
+    "rootDir": ".",
+    "skipLibCheck": true
+  },
+  "include": [
+    "index.ts",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "theme/**/*.ts",
+    "types/**/*.ts",
+    "types/**/*.d.ts"
+  ],
+  "exclude": [
+    "**/*-old.tsx",
+    "**/*.stories.tsx",
+    ".storybook/**/*",
+    "node_modules",
+    "dist",
+    "storybook-static",
+    "vite.config.ts",
+    "vite.lib.config.ts",
+    "panda.config.ts"
+  ]
+}

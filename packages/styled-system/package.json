@@ -1,0 +1,55 @@
+{
+  "name": "@infernalui/styled-system",
+  "version": "0.0.0",
+  "license": "Apache-2.0",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "css",
+    "jsx",
+    "patterns",
+    "tokens",
+    "types",
+    "helpers.mjs",
+    "styles.css"
+  ],
+  "exports": {
+    "./css": {
+      "types": "./css/index.d.ts",
+      "import": "./css/index.mjs"
+    },
+    "./jsx": {
+      "types": "./jsx/index.d.ts",
+      "import": "./jsx/index.mjs"
+    },
+    "./patterns": {
+      "types": "./patterns/index.d.ts",
+      "import": "./patterns/index.mjs"
+    },
+    "./tokens": {
+      "types": "./tokens/index.d.ts",
+      "import": "./tokens/index.mjs"
+    },
+    "./types": {
+      "types": "./types/index.d.ts",
+      "import": "./types/index.d.ts"
+    },
+    "./styles.css": "./styles.css",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "dev": "bash -lc 'trap \"kill 0\" EXIT; panda codegen --watch & panda cssgen --watch --outfile styles.css & wait'",
+    "build": "rm -rf css jsx patterns tokens types helpers.mjs styles.css && panda codegen && panda cssgen --outfile styles.css",
+    "check-types": "tsc -p tsconfig.json --noEmit"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.9.11"
+  },
+  "devDependencies": {
+    "@pandacss/dev": "^1.8.2",
+    "solid-js": "^1.9.11",
+    "typescript": "^5.9.3"
+  }
+}
