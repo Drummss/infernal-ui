@@ -2,6 +2,9 @@ import { cva } from '@infernalui/styled-system/css';
 import type { RecipeVariantProps } from '@infernalui/styled-system/types';
 
 export const headingRecipe = cva({
+  base: {
+    color: 'typography.color.heading',
+  },
   variants: {
     level: {
       '1': {
@@ -29,7 +32,7 @@ export const headingRecipe = cva({
       underline: {
         borderBottomWidth: '2px',
         borderBottomStyle: 'solid',
-        borderBottomColor: 'red.600',
+        borderBottomColor: 'color.primary.main',
       },
     },
   },

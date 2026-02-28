@@ -1,0 +1,19 @@
+{
+  "name": "@infernalui/preset",
+  "version": "0.0.0",
+  "license": "Apache-2.0",
+  "type": "module",
+  "files": [
+    "**/*.ts"
+  ],
+  "exports": {
+    ".": {
+      "types": "./index.ts",
+      "import": "./index.ts"
+    }
+  },
+  "devDependencies": {
+    "@pandacss/dev": "^1.8.2",
+    "typescript": "^5.9.3"
+  }
+}

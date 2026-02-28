@@ -1,6 +1,7 @@
 css/
 jsx/
 patterns/
+themes/
 tokens/
 types/
 helpers.mjs

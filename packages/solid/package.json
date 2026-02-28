@@ -19,6 +19,10 @@
       "types": "./dist/components/index.d.ts",
       "import": "./dist/components.js"
     },
+    "./preset": {
+      "types": "./dist/preset.d.ts",
+      "import": "./dist/preset.js"
+    },
     "./panda.buildinfo.json": "./dist/panda.buildinfo.json",
     "./package.json": "./package.json"
   },
@@ -55,6 +59,7 @@
     "vitest": "^4.0.18"
   },
   "dependencies": {
+    "@infernalui/preset": "workspace:*",
     "@infernalui/styled-system": "workspace:*",
     "@ark-ui/solid": "^5.31.0"
   },

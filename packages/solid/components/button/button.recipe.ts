@@ -19,7 +19,7 @@ export const buttonRecipe = cva({
     _focusVisible: {
       outlineWidth: '2px',
       outlineStyle: 'solid',
-      outlineColor: 'blue.500',
+      outlineColor: 'color.border.focus',
       outlineOffset: '2px',
     },
     _disabled: {
@@ -31,24 +31,24 @@ export const buttonRecipe = cva({
   variants: {
     variant: {
       solid: {
-        bg: 'gray.900',
-        color: 'white',
-        _hover: { bg: 'gray.800' },
-        _active: { bg: 'gray.700' },
+        bg: 'color.primary.main',
+        color: 'color.primary.contrast',
+        _hover: { bg: 'color.primary.hover' },
+        _active: { bg: 'color.primary.active' },
       },
       outline: {
         bg: 'transparent',
-        color: 'gray.900',
-        borderColor: 'gray.300',
-        _hover: { bg: 'gray.100' },
-        _active: { bg: 'gray.200' },
+        color: 'typography.color.body',
+        borderColor: 'color.border.default',
+        _hover: { bg: 'color.background.subtle' },
+        _active: { bg: 'color.background.canvas' },
       },
       ghost: {
         bg: 'transparent',
-        color: 'gray.900',
+        color: 'typography.color.body',
         borderColor: 'transparent',
-        _hover: { bg: 'gray.100' },
-        _active: { bg: 'gray.200' },
+        _hover: { bg: 'color.background.subtle' },
+        _active: { bg: 'color.background.canvas' },
       },
     },
     size: {

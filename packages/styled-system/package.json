@@ -10,6 +10,7 @@
     "css",
     "jsx",
     "patterns",
+    "themes",
     "tokens",
     "types",
     "helpers.mjs",
@@ -28,6 +29,10 @@
       "types": "./patterns/index.d.ts",
       "import": "./patterns/index.mjs"
     },
+    "./themes": {
+      "types": "./themes/index.d.ts",
+      "import": "./themes/index.mjs"
+    },
     "./tokens": {
       "types": "./tokens/index.d.ts",
       "import": "./tokens/index.mjs"
@@ -41,13 +46,14 @@
   },
   "scripts": {
     "dev": "bash -lc 'trap \"kill 0\" EXIT; panda codegen --watch & panda cssgen --watch --outfile styles.css & wait'",
-    "build": "rm -rf css jsx patterns tokens types helpers.mjs styles.css && panda codegen && panda cssgen --outfile styles.css",
+    "build": "rm -rf css jsx patterns themes tokens types helpers.mjs styles.css && panda codegen && panda cssgen --outfile styles.css",
     "check-types": "tsc -p tsconfig.json --noEmit"
   },
   "peerDependencies": {
     "solid-js": "^1.9.11"
   },
   "devDependencies": {
+    "@infernalui/preset": "workspace:*",
     "@pandacss/dev": "^1.8.2",
     "solid-js": "^1.9.11",
     "typescript": "^5.9.3"

@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "panda codegen && panda cssgen --outfile styled-system/styles.css",
     "dev:panda": "bash -lc 'trap \"kill 0\" EXIT; panda codegen --watch & panda cssgen --watch --outfile styled-system/styles.css & wait'",
-    "dev:solid-types": "pnpm --filter @infernalui/solid run build:types -- --watch",
+    "dev:solid-types": "bash -lc 'trap \"kill 0\" EXIT; pnpm --filter @infernalui/solid run build:js --watch & pnpm --filter @infernalui/solid run build:types --watch & wait'",
     "dev:vite": "vite",
     "dev": "bash -lc 'trap \"kill 0\" EXIT; pnpm run dev:panda & pnpm run dev:solid-types & pnpm run dev:vite & wait'",
     "build": "pnpm run prepare && vite build",

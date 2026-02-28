@@ -1,14 +1,49 @@
-import { defineConfig } from '@pandacss/dev';
+import {
+  createAccentTheme,
+  defineInfernalConfig,
+} from '@infernalui/solid/preset';
 
-export default defineConfig({
-  preflight: true,
-  jsxFramework: 'solid',
-  importMap: '@infernalui/styled-system',
-  include: [
-    './src/**/*.{ts,tsx}',
-    './node_modules/@infernalui/solid/dist/panda.buildinfo.json',
-  ],
-  outdir: 'styled-system',
+export default defineInfernalConfig({
+  themes: {
+    volcanic: createAccentTheme({
+      primary: {
+        main: '{colors.orange.600}',
+        hover: '{colors.orange.700}',
+        active: '{colors.orange.500}',
+        focus: '{colors.orange.500}',
+        contrast: '{colors.white}',
+      },
+      colors: {
+        color: {
+          text: {
+            primary: { base: '{colors.slate.900}', _dark: '{colors.slate.100}' },
+            secondary: { base: '{colors.slate.700}', _dark: '{colors.slate.300}' },
+            muted: { base: '{colors.slate.600}', _dark: '{colors.slate.400}' },
+            link: { base: '{colors.orange.700}', _dark: '{colors.orange.300}' },
+          },
+          background: {
+            canvas: { base: '{colors.slate.50}', _dark: '{colors.slate.950}' },
+            surface: { base: '{colors.orange.50}', _dark: '{colors.violet.950}' },
+            subtle: { base: '{colors.orange.100}', _dark: '{colors.violet.900}' },
+          },
+          border: {
+            default: { base: '{colors.orange.300}', _dark: '{colors.violet.700}' },
+            subtle: { base: '{colors.orange.200}', _dark: '{colors.violet.800}' },
+            strong: { base: '{colors.orange.500}', _dark: '{colors.violet.500}' },
+          },
+        },
+        typography: {
+          color: {
+            body: { base: '{colors.slate.900}', _dark: '{colors.slate.100}' },
+            secondary: { base: '{colors.slate.700}', _dark: '{colors.slate.300}' },
+            muted: { base: '{colors.slate.600}', _dark: '{colors.slate.400}' },
+            heading: { base: '{colors.slate.950}', _dark: '{colors.white}' },
+            link: { base: '{colors.orange.700}', _dark: '{colors.orange.300}' },
+          },
+        },
+      },
+    }),
+  },
   theme: {
     extend: {
       tokens: {

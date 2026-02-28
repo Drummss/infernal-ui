@@ -11,9 +11,11 @@
   },
   "include": [
     "index.ts",
+    "preset.ts",
     "components/**/*.ts",
     "components/**/*.tsx",
     "theme/**/*.ts",
+    "theme/**/*.tsx",
     "types/**/*.ts",
     "types/**/*.d.ts"
   ],
