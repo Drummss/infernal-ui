@@ -9,11 +9,6 @@ export const emeraldAccentTheme = createAccentTheme({
     contrast: '{colors.white}',
   },
   colors: {
-    color: {
-      border: {
-        focus: '{colors.emerald.500}',
-      },
-    },
     typography: {
       color: {
         link: { base: '{colors.emerald.700}', _dark: '{colors.emerald.300}' },

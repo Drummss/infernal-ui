@@ -30,10 +30,12 @@
     "dev": "pnpm run build:extract:watch",
     "build": "pnpm run build:js && pnpm run build:types && pnpm run build:extract",
     "build:js": "vite build -c vite.lib.config.ts",
-    "build:types": "tsc -p tsconfig.build.json",
+    "build:types": "tsc -p tsconfig.build.json --incremental false",
     "build:extract": "panda ship \"components/**/*.{ts,tsx}\" --outfile dist/panda.buildinfo.json",
     "build:extract:watch": "panda ship \"components/**/*.{ts,tsx}\" --watch --outfile dist/panda.buildinfo.json",
     "check-types": "pnpm run build:types && tsc -p tsconfig.build.json --noEmit",
+    "check-types:storybook": "tsc -p .storybook/tsconfig.json --noEmit",
+    "check-types:all": "pnpm run check-types && pnpm run check-types:storybook",
     "prepack": "pnpm run build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

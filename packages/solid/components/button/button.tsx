@@ -1,6 +1,9 @@
-import type { JSX } from 'solid-js';
 import { styled } from '@infernalui/styled-system/jsx';
-import type { JsxStyleProps, RecipeVariantProps } from '@infernalui/styled-system/types';
+import type {
+  JsxStyleProps,
+  RecipeVariantProps,
+} from '@infernalui/styled-system/types';
+import type { JSX } from 'solid-js';
 import type { ElementType, InfernalProps } from '../../types/types';
 import { buttonRecipe } from './button.recipe';
 

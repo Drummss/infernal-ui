@@ -1,5 +1,4 @@
 import { type Token, token } from '@infernalui/styled-system/tokens';
-import { useInfernalTheme } from './infernal-context';
 
 type StripPrefix<
   T extends string,
@@ -31,15 +30,12 @@ const withPrefix = <
 };
 
 export const useTheme = () => {
-  const context = useInfernalTheme();
-
   const getToken = <T extends Token>(path: T, fallback?: string) =>
     token(path, fallback);
   const getTokenVar = <T extends Token>(path: T, fallback?: string) =>
     token.var(path, fallback);
 
   return {
-    ...context,
     token: getToken,
     tokenVar: getTokenVar,
     colors: withPrefix<'colors', ColorToken>('colors'),

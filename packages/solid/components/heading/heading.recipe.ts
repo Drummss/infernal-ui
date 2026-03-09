@@ -32,7 +32,7 @@ export const headingRecipe = cva({
       underline: {
         borderBottomWidth: '2px',
         borderBottomStyle: 'solid',
-        borderBottomColor: 'color.primary.main',
+        borderBottomColor: 'palette.primary.main',
       },
     },
   },

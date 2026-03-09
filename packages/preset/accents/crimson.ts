@@ -9,11 +9,6 @@ export const crimsonAccentTheme = createAccentTheme({
     contrast: '{colors.white}',
   },
   colors: {
-    color: {
-      border: {
-        focus: '{colors.red.500}',
-      },
-    },
     typography: {
       color: {
         link: { base: '{colors.red.700}', _dark: '{colors.red.300}' },

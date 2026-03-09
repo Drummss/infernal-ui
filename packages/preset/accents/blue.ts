@@ -9,11 +9,6 @@ export const blueAccentTheme = createAccentTheme({
     contrast: '{colors.white}',
   },
   colors: {
-    color: {
-      border: {
-        focus: '{colors.blue.500}',
-      },
-    },
     typography: {
       color: {
         link: { base: '{colors.blue.700}', _dark: '{colors.blue.300}' },

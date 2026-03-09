@@ -15,9 +15,9 @@ export const Playground = meta.story({
   render: () => (
     <Box
       p="4"
-      bg="gray.100"
+      bg="palette.background.surface"
       borderWidth="1px"
-      borderColor="gray.300"
+      borderColor="palette.border"
       rounded="md"
     >
       Infernal Box
@@ -40,7 +40,7 @@ export const AsButton = meta.story({
 
 export const ClassMerge = meta.story({
   render: () => (
-    <Box class="custom-box" p="3" bg="gray.100" rounded="sm">
+    <Box class="custom-box" p="3" bg="palette.background.surface" rounded="sm">
       Custom class + Panda class
     </Box>
   ),

@@ -27,7 +27,8 @@ export default defineConfig({
   build: {
     target: 'esnext',
     outDir: 'dist',
-    emptyOutDir: true,
+    // Keep emitted declarations during JS watch rebuilds.
+    emptyOutDir: process.argv.every((arg) => arg !== '--watch'),
     lib: {
       entry: {
         index: entry('index.ts'),

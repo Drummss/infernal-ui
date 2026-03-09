@@ -5,6 +5,9 @@
     "moduleResolution": "bundler",
     "allowJs": false,
     "noEmit": true,
+    "skipLibCheck": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./node_modules/.cache/tsconfig.tsbuildinfo",
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "types": ["vite/client"],
@@ -13,5 +16,11 @@
     }
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.d.ts"],
-  "exclude": ["node_modules", "dist", "storybook-static"]
+  "exclude": [
+    ".storybook/**/*",
+    "**/*.stories.tsx",
+    "node_modules",
+    "dist",
+    "storybook-static"
+  ]
 }

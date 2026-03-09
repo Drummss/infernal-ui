@@ -1,8 +1,8 @@
-import { Box } from '../components/box';
 import type { ThemeName } from '@infernalui/styled-system/themes';
-import type { ElementType, InfernalProps } from '../types/types';
 import {
+  type Accessor,
   createContext,
+  createEffect,
   createMemo,
   createSignal,
   mergeProps,
@@ -10,12 +10,14 @@ import {
   onMount,
   splitProps,
   useContext,
-  type Accessor,
 } from 'solid-js';
+import { Box } from '../components/box';
+import type { ElementType, InfernalProps } from '../types/types';
 
 export type InfernalTheme = 'light' | 'dark' | 'system';
 export type InfernalResolvedTheme = 'light' | 'dark';
 export type InfernalAccentTheme = ThemeName | (string & {});
+export type InfernalThemeScope = 'document' | 'local';
 
 const getSystemTheme = (): InfernalResolvedTheme => {
   if (
@@ -39,11 +41,13 @@ export type InfernalThemeContextValue = {
 
 const InfernalThemeContext = createContext<InfernalThemeContextValue>();
 
-export const useInfernalTheme = () => {
+export const useInfernalContext = () => {
   const context = useContext(InfernalThemeContext);
 
   if (!context) {
-    throw new Error('useInfernalTheme must be used within <InfernalContext>.');
+    throw new Error(
+      'useInfernalContext must be used within <InfernalContext>.',
+    );
   }
 
   return context;
@@ -58,6 +62,7 @@ export type InfernalContextProps<C extends ElementType = 'div'> = InfernalProps<
     accent?: InfernalAccentTheme;
     defaultAccent?: InfernalAccentTheme;
     onAccentChange?: (theme?: InfernalAccentTheme) => void;
+    scope?: InfernalThemeScope;
   }
 >;
 
@@ -68,6 +73,7 @@ export const InfernalContext = <C extends ElementType = 'div'>(
     {
       as: 'div',
       defaultTheme: 'system',
+      scope: 'document',
     } satisfies Partial<InfernalContextProps<'div'>>,
     props,
   ) as InfernalContextProps<'div'>;
@@ -81,6 +87,7 @@ export const InfernalContext = <C extends ElementType = 'div'>(
     'accent',
     'defaultAccent',
     'onAccentChange',
+    'scope',
   ]);
 
   const [internalTheme, setInternalTheme] = createSignal<InfernalTheme>(
@@ -88,11 +95,10 @@ export const InfernalContext = <C extends ElementType = 'div'>(
   );
   const [internalAccent, setInternalAccent] = createSignal<
     InfernalAccentTheme | undefined
-  >(
-    local.defaultAccent,
+  >(local.defaultAccent);
+  const [systemTheme, setSystemTheme] = createSignal<InfernalResolvedTheme>(
+    getSystemTheme(),
   );
-  const [systemTheme, setSystemTheme] =
-    createSignal<InfernalResolvedTheme>(getSystemTheme());
 
   onMount(() => {
     if (typeof window === 'undefined') {
@@ -140,7 +146,8 @@ export const InfernalContext = <C extends ElementType = 'div'>(
     setTheme(nextTheme);
   };
 
-  const mergedClass = () => [resolvedTheme(), rest.class].filter(Boolean).join(' ');
+  const mergedClass = () =>
+    [resolvedTheme(), rest.class].filter(Boolean).join(' ');
 
   const contextValue: InfernalThemeContextValue = {
     theme,
@@ -151,17 +158,65 @@ export const InfernalContext = <C extends ElementType = 'div'>(
     toggleTheme,
   };
 
+  createEffect(() => {
+    if (local.scope !== 'document' || typeof document === 'undefined') {
+      return;
+    }
+
+    const body = document.body;
+    const html = document.documentElement;
+
+    const previousBodyColorMode = body.dataset.colorMode;
+    const previousBodyPandaTheme = body.dataset.pandaTheme;
+    const hadBodyDarkClass = body.classList.contains('dark');
+    const hadHtmlDarkClass = html.classList.contains('dark');
+
+    const nextResolvedTheme = resolvedTheme();
+    const nextAccent = accent();
+
+    body.classList.toggle('dark', nextResolvedTheme === 'dark');
+    html.classList.toggle('dark', nextResolvedTheme === 'dark');
+    body.dataset.colorMode = nextResolvedTheme;
+
+    if (nextAccent) {
+      body.dataset.pandaTheme = nextAccent;
+    } else {
+      delete body.dataset.pandaTheme;
+    }
+
+    onCleanup(() => {
+      body.classList.toggle('dark', hadBodyDarkClass);
+      html.classList.toggle('dark', hadHtmlDarkClass);
+
+      if (previousBodyColorMode) {
+        body.dataset.colorMode = previousBodyColorMode;
+      } else {
+        delete body.dataset.colorMode;
+      }
+
+      if (previousBodyPandaTheme) {
+        body.dataset.pandaTheme = previousBodyPandaTheme;
+      } else {
+        delete body.dataset.pandaTheme;
+      }
+    });
+  });
+
   return (
     <InfernalThemeContext.Provider value={contextValue}>
-      <Box
-        as={local.as}
-        {...rest}
-        class={mergedClass()}
-        data-color-mode={resolvedTheme()}
-        data-panda-theme={accent()}
-      >
-        {local.children}
-      </Box>
+      {local.scope === 'local' ? (
+        <Box
+          as={local.as}
+          {...rest}
+          class={mergedClass()}
+          data-color-mode={resolvedTheme()}
+          data-panda-theme={accent()}
+        >
+          {local.children}
+        </Box>
+      ) : (
+        local.children
+      )}
     </InfernalThemeContext.Provider>
   );
 };

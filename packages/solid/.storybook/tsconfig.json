@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "../node_modules/.cache/tsconfig.storybook.tsbuildinfo"
+  },
+  "include": [
+    "./*.ts",
+    "./*.tsx",
+    "../components/**/*.stories.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "storybook-static"
+  ]
+}

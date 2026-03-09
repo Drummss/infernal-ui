@@ -9,11 +9,6 @@ export const amberAccentTheme = createAccentTheme({
     contrast: '{colors.gray.950}',
   },
   colors: {
-    color: {
-      border: {
-        focus: '{colors.amber.500}',
-      },
-    },
     typography: {
       color: {
         link: { base: '{colors.amber.700}', _dark: '{colors.amber.300}' },

@@ -1,66 +1,43 @@
-import { defineSemanticTokens } from '@pandacss/dev';
+import { defineTokens } from '@pandacss/dev';
 
-export const infernalSemanticColors = defineSemanticTokens.colors({
-  color: {
-    primary: {
-      main: { value: '{colors.red.600}' },
-      hover: { value: '{colors.red.700}' },
-      active: { value: '{colors.red.500}' },
-      focus: { value: '{colors.red.500}' },
-      contrast: { value: '{colors.white}' },
-    },
-    text: {
-      primary: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.100}' } },
-      secondary: { value: { base: '{colors.gray.700}', _dark: '{colors.gray.300}' } },
-      muted: { value: { base: '{colors.gray.600}', _dark: '{colors.gray.400}' } },
-      disabled: { value: { base: '{colors.gray.400}', _dark: '{colors.gray.600}' } },
-      inverse: { value: { base: '{colors.white}', _dark: '{colors.gray.950}' } },
-      link: { value: { base: '{colors.blue.700}', _dark: '{colors.blue.300}' } },
-    },
-    background: {
-      canvas: { value: { base: '{colors.gray.50}', _dark: '{colors.gray.950}' } },
-      surface: { value: { base: '{colors.white}', _dark: '{colors.gray.900}' } },
-      subtle: { value: { base: '{colors.gray.100}', _dark: '{colors.gray.800}' } },
-      raised: { value: { base: '{colors.white}', _dark: '{colors.gray.800}' } },
-      inverse: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.100}' } },
-    },
-    border: {
-      default: { value: { base: '{colors.gray.300}', _dark: '{colors.gray.700}' } },
-      subtle: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.800}' } },
-      strong: { value: { base: '{colors.gray.500}', _dark: '{colors.gray.500}' } },
-      focus: { value: '{colors.red.500}' },
-    },
-    status: {
-      info: {
-        main: { value: '{colors.sky.600}' },
-        subtle: { value: { base: '{colors.sky.100}', _dark: '{colors.sky.900}' } },
-        contrast: { value: '{colors.white}' },
-      },
-      success: {
-        main: { value: '{colors.emerald.600}' },
-        subtle: { value: { base: '{colors.emerald.100}', _dark: '{colors.emerald.900}' } },
-        contrast: { value: '{colors.white}' },
-      },
-      warning: {
-        main: { value: '{colors.amber.600}' },
-        subtle: { value: { base: '{colors.amber.100}', _dark: '{colors.amber.900}' } },
-        contrast: { value: '{colors.gray.950}' },
-      },
-      danger: {
-        main: { value: '{colors.red.600}' },
-        subtle: { value: { base: '{colors.red.100}', _dark: '{colors.red.900}' } },
-        contrast: { value: '{colors.white}' },
-      },
-    },
+export const infernalColors = defineTokens.colors({
+  gray: {
+    50: { value: '#fafafa' },
+    100: { value: '#f4f4f5' },
+    200: { value: '#e4e4e7' },
+    300: { value: '#d4d4d8' },
+    400: { value: '#a1a1aa' },
+    500: { value: '#71717a' },
+    600: { value: '#52525b' },
+    700: { value: '#3f3f46' },
+    800: { value: '#27272a' },
+    900: { value: '#18181b' },
+    950: { value: '#111111' },
   },
-  typography: {
-    color: {
-      body: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.100}' } },
-      secondary: { value: { base: '{colors.gray.700}', _dark: '{colors.gray.300}' } },
-      muted: { value: { base: '{colors.gray.600}', _dark: '{colors.gray.400}' } },
-      heading: { value: { base: '{colors.gray.950}', _dark: '{colors.gray.50}' } },
-      link: { value: { base: '{colors.blue.700}', _dark: '{colors.blue.300}' } },
-      inverse: { value: { base: '{colors.white}', _dark: '{colors.gray.950}' } },
-    },
+  blackAlpha: {
+    50: { value: 'rgba(0, 0, 0, 0.04)' },
+    100: { value: 'rgba(0, 0, 0, 0.06)' },
+    200: { value: 'rgba(0, 0, 0, 0.08)' },
+    300: { value: 'rgba(0, 0, 0, 0.16)' },
+    400: { value: 'rgba(0, 0, 0, 0.24)' },
+    500: { value: 'rgba(0, 0, 0, 0.36)' },
+    600: { value: 'rgba(0, 0, 0, 0.48)' },
+    700: { value: 'rgba(0, 0, 0, 0.64)' },
+    800: { value: 'rgba(0, 0, 0, 0.80)' },
+    900: { value: 'rgba(0, 0, 0, 0.92)' },
+    950: { value: 'rgba(0, 0, 0, 0.95)' },
+  },
+  whiteAlpha: {
+    50: { value: 'rgba(255, 255, 255, 0.04)' },
+    100: { value: 'rgba(255, 255, 255, 0.06)' },
+    200: { value: 'rgba(255, 255, 255, 0.08)' },
+    300: { value: 'rgba(255, 255, 255, 0.16)' },
+    400: { value: 'rgba(255, 255, 255, 0.24)' },
+    500: { value: 'rgba(255, 255, 255, 0.36)' },
+    600: { value: 'rgba(255, 255, 255, 0.48)' },
+    700: { value: 'rgba(255, 255, 255, 0.64)' },
+    800: { value: 'rgba(255, 255, 255, 0.80)' },
+    900: { value: 'rgba(255, 255, 255, 0.92)' },
+    950: { value: 'rgba(255, 255, 255, 0.95)' },
   },
 });

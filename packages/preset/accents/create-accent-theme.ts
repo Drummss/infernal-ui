@@ -1,5 +1,5 @@
 import type { SemanticTokens } from '@pandacss/dev';
-import type { infernalSemanticColors } from '../semantic/colors';
+import type { infernalSemanticColors } from '../semantic/semantic';
 
 type InfernalConditionalColorValue = Record<string, string>;
 export type InfernalColorValue = string | InfernalConditionalColorValue;
@@ -12,7 +12,7 @@ type InfernalThemeColorOverrides<T = typeof infernalSemanticColors> =
       : never;
 
 type InfernalPrimaryColorScale = NonNullable<
-  NonNullable<InfernalThemeColorOverrides['color']>['primary']
+  NonNullable<InfernalThemeColorOverrides['palette']>['primary']
 >;
 
 export type InfernalAccentScale = {
@@ -94,7 +94,7 @@ export const createAccentTheme = (scale: InfernalAccentScale = {}) => {
   const baseColors =
     Object.keys(primaryOverrides).length > 0
       ? ({
-          color: {
+          palette: {
             primary: primaryOverrides,
           },
         } as InfernalObject)
