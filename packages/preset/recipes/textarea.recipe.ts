@@ -1,7 +1,7 @@
-import { cva } from '@infernalui/styled-system/css';
-import type { RecipeVariantProps } from '@infernalui/styled-system/types';
+import { defineRecipe } from '@pandacss/dev';
 
-export const textareaRecipe = cva({
+export const textareaRecipe = defineRecipe({
+  className: 'textarea',
   base: {
     appearance: 'none',
     w: 'full',
@@ -46,5 +46,3 @@ export const textareaRecipe = cva({
     },
   },
 });
-
-export type TextareaRecipeVariants = RecipeVariantProps<typeof textareaRecipe>;

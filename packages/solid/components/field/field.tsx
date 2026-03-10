@@ -1,8 +1,11 @@
 import { Field as ArkField } from '@ark-ui/solid/field';
 import { createStyleContext } from '@infernalui/styled-system/jsx';
-import { fieldRecipe } from './field.recipe';
+import { field } from '@infernalui/styled-system/recipes';
+import type { RecipeVariantProps } from '@infernalui/styled-system/types';
 
-const { withProvider, withContext } = createStyleContext(fieldRecipe);
+export type FieldRecipeVariants = RecipeVariantProps<typeof field>;
+
+const { withProvider, withContext } = createStyleContext(field);
 
 export const FieldRoot = withProvider(ArkField.Root, 'root');
 export const FieldLabel = withContext(ArkField.Label, 'label');

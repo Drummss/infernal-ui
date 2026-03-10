@@ -1,7 +1,6 @@
-import { sva } from '@infernalui/styled-system/css';
-import type { RecipeVariantProps } from '@infernalui/styled-system/types';
+import { defineSlotRecipe } from '@pandacss/dev';
 
-export const fieldsetRecipe = sva({
+export const fieldsetRecipe = defineSlotRecipe({
   className: 'fieldset',
   slots: ['root', 'legend', 'helperText', 'errorText'],
   base: {
@@ -47,5 +46,3 @@ export const fieldsetRecipe = sva({
     },
   },
 });
-
-export type FieldsetRecipeVariants = RecipeVariantProps<typeof fieldsetRecipe>;

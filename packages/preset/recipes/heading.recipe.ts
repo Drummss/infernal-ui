@@ -1,7 +1,7 @@
-import { cva } from '@infernalui/styled-system/css';
-import type { RecipeVariantProps } from '@infernalui/styled-system/types';
+import { defineRecipe } from '@pandacss/dev';
 
-export const headingRecipe = cva({
+export const headingRecipe = defineRecipe({
+  className: 'heading',
   base: {
     color: 'typography.color.heading',
   },
@@ -37,5 +37,3 @@ export const headingRecipe = cva({
     },
   },
 });
-
-export type HeadingRecipeVariants = RecipeVariantProps<typeof headingRecipe>;

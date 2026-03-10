@@ -1,2 +1,2 @@
 export * from './textarea';
-export type { TextareaRecipeVariants } from './textarea.recipe';
+export type { TextareaRecipeVariants } from './textarea';

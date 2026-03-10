@@ -1,14 +1,14 @@
 import { styled } from '@infernalui/styled-system/jsx';
+import { button } from '@infernalui/styled-system/recipes';
 import type {
   JsxStyleProps,
   RecipeVariantProps,
 } from '@infernalui/styled-system/types';
 import { splitProps, type JSX } from 'solid-js';
 import type { ElementType, InfernalProps } from '../../types/types';
-import { buttonRecipe } from './button.recipe';
 
 type ButtonStyleProps = JsxStyleProps &
-  RecipeVariantProps<typeof buttonRecipe> & {
+  RecipeVariantProps<typeof button> & {
     unstyled?: boolean;
   };
 
@@ -22,7 +22,7 @@ export type ButtonProps<C extends ElementType = 'button'> = InfernalProps<
   ButtonStyleProps & ButtonOwnProps
 >;
 
-const BaseButton = styled('button', buttonRecipe);
+const BaseButton = styled('button', button);
 
 type ButtonComponent = typeof BaseButton &
   (<C extends ElementType = 'button'>(props: ButtonProps<C>) => JSX.Element);

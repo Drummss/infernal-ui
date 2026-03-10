@@ -1,12 +1,26 @@
-import { selectAnatomy } from '@ark-ui/solid/anatomy';
-import { sva } from '@infernalui/styled-system/css';
-import type { RecipeVariantProps } from '@infernalui/styled-system/types';
+import { defineSlotRecipe } from '@pandacss/dev';
 
-const slots = selectAnatomy.keys();
+const selectSlots = [
+  'label',
+  'positioner',
+  'trigger',
+  'indicator',
+  'clearTrigger',
+  'item',
+  'itemText',
+  'itemIndicator',
+  'itemGroup',
+  'itemGroupLabel',
+  'list',
+  'content',
+  'root',
+  'control',
+  'valueText',
+] as const;
 
-export const selectRecipe = sva({
+export const selectRecipe = defineSlotRecipe({
   className: 'select',
-  slots,
+  slots: selectSlots,
   base: {
     root: {
       display: 'grid',
@@ -47,7 +61,7 @@ export const selectRecipe = sva({
         borderColor: 'transparent',
         outlineColor: 'palette.primary.focus',
         outlineWidth: '2px',
-        outlineStyle: 'solid'
+        outlineStyle: 'solid',
       },
       _focusVisible: {
         outlineWidth: '2px',
@@ -66,7 +80,7 @@ export const selectRecipe = sva({
         borderColor: 'red.600',
       },
       '&[data-placeholder-shown]': {
-        color: 'typography.color.muted'
+        color: 'typography.color.muted',
       },
     },
     valueText: {
@@ -175,5 +189,3 @@ export const selectRecipe = sva({
     size: 'md',
   },
 });
-
-export type SelectRecipeVariants = RecipeVariantProps<typeof selectRecipe>;

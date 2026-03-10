@@ -1,7 +1,7 @@
 import type { CheckboxRootProps as ArkCheckboxRootProps } from '@ark-ui/solid/checkbox';
 import { Show, splitProps, type JSX } from 'solid-js';
 import { Checkbox } from './checkbox';
-import type { CheckboxRecipeVariants } from './checkbox.recipe';
+import type { CheckboxRecipeVariants } from './checkbox';
 
 type ArkRootProps = ArkCheckboxRootProps;
 

@@ -1,2 +1,2 @@
 export * from './fieldset';
-export type { FieldsetRecipeVariants } from './fieldset.recipe';
+export type { FieldsetRecipeVariants } from './fieldset';

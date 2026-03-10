@@ -1,6 +1,7 @@
-import { cva } from '@infernalui/styled-system/css';
+import { defineRecipe } from '@pandacss/dev';
 
-export const buttonRecipe = cva({
+export const buttonRecipe = defineRecipe({
+  className: 'button',
   base: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -31,7 +32,7 @@ export const buttonRecipe = cva({
       solid: {
         bg: 'palette.primary.main',
         color: 'palette.primary.contrast',
-        _hover: { 
+        _hover: {
           bg: 'palette.background.surface',
           color: 'palette.text',
           outlineWidth: '2px',

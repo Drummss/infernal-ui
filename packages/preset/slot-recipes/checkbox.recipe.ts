@@ -1,7 +1,6 @@
-import { sva } from '@infernalui/styled-system/css';
-import type { RecipeVariantProps } from '@infernalui/styled-system/types';
+import { defineSlotRecipe } from '@pandacss/dev';
 
-export const checkboxRecipe = sva({
+export const checkboxRecipe = defineSlotRecipe({
   className: 'checkbox',
   slots: ['root', 'control', 'indicator', 'label', 'hiddenInput'],
   base: {
@@ -9,7 +8,7 @@ export const checkboxRecipe = sva({
       position: 'relative',
       display: 'inline-flex',
       alignItems: 'center',
-      verticalAlign: "top",
+      verticalAlign: 'top',
       gap: '2',
       color: 'typography.color.body',
       userSelect: 'none',
@@ -65,5 +64,3 @@ export const checkboxRecipe = sva({
     },
   },
 });
-
-export type CheckboxRecipeVariants = RecipeVariantProps<typeof checkboxRecipe>;

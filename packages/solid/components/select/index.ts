@@ -1,6 +1,6 @@
 export * from './select';
 export * from './simple-select';
-export type { SelectRecipeVariants } from './select.recipe';
+export type { SelectRecipeVariants } from './select';
 export {
   createListCollection,
   useListCollection,

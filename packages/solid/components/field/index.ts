@@ -1,2 +1,2 @@
 export * from './field';
-export type { FieldRecipeVariants } from './field.recipe';
+export type { FieldRecipeVariants } from './field';

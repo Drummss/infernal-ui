@@ -1,7 +1,7 @@
-import { cva } from '@infernalui/styled-system/css';
-import type { RecipeVariantProps } from '@infernalui/styled-system/types';
+import { defineRecipe } from '@pandacss/dev';
 
-export const inputRecipe = cva({
+export const inputRecipe = defineRecipe({
+  className: 'input',
   base: {
     width: 'full',
     padding: '10px 15px',
@@ -43,5 +43,3 @@ export const inputRecipe = cva({
     },
   },
 });
-
-export type InputRecipeVariants = RecipeVariantProps<typeof inputRecipe>;

@@ -3,7 +3,7 @@ import { createListCollection } from '@ark-ui/solid/select';
 import { createMemo, For, type JSX, Show, splitProps } from 'solid-js';
 import { Portal } from 'solid-js/web';
 import { Select } from './select';
-import type { SelectRecipeVariants } from './select.recipe';
+import type { SelectRecipeVariants } from './select';
 
 export type SimpleSelectItem = {
   label: string;

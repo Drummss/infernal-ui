@@ -1,7 +1,10 @@
+import { heading } from '@infernalui/styled-system/recipes';
+import type { RecipeVariantProps } from '@infernalui/styled-system/types';
 import { mergeProps, splitProps } from 'solid-js';
 import type { ElementType, InfernalProps } from '../../types/types';
 import { Box } from '../box';
-import { type HeadingRecipeVariants, headingRecipe } from './heading.recipe';
+
+export type HeadingRecipeVariants = RecipeVariantProps<typeof heading>;
 
 type HeadingRecipeLevel = NonNullable<HeadingRecipeVariants['level']>;
 
@@ -44,7 +47,7 @@ export const Heading = <C extends ElementType = 'h2'>(
 
   const className = () =>
     [
-      headingRecipe({ level: resolvedLevel(), style: resolvedStyle() }),
+      heading({ level: resolvedLevel(), style: resolvedStyle() }),
       rest.class,
     ]
       .filter(Boolean)

@@ -1,10 +1,13 @@
 import { Select as ArkSelect } from '@ark-ui/solid/select';
 import { createStyleContext } from '@infernalui/styled-system/jsx';
+import { select } from '@infernalui/styled-system/recipes';
+import type { RecipeVariantProps } from '@infernalui/styled-system/types';
 import { splitProps, type ComponentProps } from 'solid-js';
 import { CheckIcon, ChevronDownIcon } from '../icons';
-import { selectRecipe } from './select.recipe';
 
-const { withProvider, withContext } = createStyleContext(selectRecipe);
+export type SelectRecipeVariants = RecipeVariantProps<typeof select>;
+
+const { withProvider, withContext } = createStyleContext(select);
 
 export const SelectRoot = withProvider(ArkSelect.Root, 'root');
 export const SelectLabel = withContext(ArkSelect.Label, 'label');

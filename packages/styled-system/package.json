@@ -10,6 +10,7 @@
     "css",
     "jsx",
     "patterns",
+    "recipes",
     "themes",
     "tokens",
     "types",
@@ -29,6 +30,10 @@
       "types": "./patterns/index.d.ts",
       "import": "./patterns/index.mjs"
     },
+    "./recipes": {
+      "types": "./recipes/index.d.ts",
+      "import": "./recipes/index.mjs"
+    },
     "./themes": {
       "types": "./themes/index.d.ts",
       "import": "./themes/index.mjs"
@@ -46,7 +51,7 @@
   },
   "scripts": {
     "dev": "bash -lc 'trap \"kill 0\" EXIT; panda codegen --watch & panda cssgen --watch --outfile styles.css & wait'",
-    "build": "rm -rf css jsx patterns themes tokens types helpers.mjs styles.css && panda codegen && panda cssgen --outfile styles.css",
+    "build": "rm -rf css jsx patterns recipes themes tokens types helpers.mjs styles.css && panda codegen && panda cssgen --outfile styles.css",
     "check-types": "tsc -p tsconfig.json --noEmit"
   },
   "peerDependencies": {
