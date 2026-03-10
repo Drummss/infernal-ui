@@ -1,4 +1,4 @@
-import { mergeProps, splitProps, type JSX } from 'solid-js';
+import { type JSX, mergeProps, splitProps } from 'solid-js';
 import type { ElementType } from '../../types/types';
 import { Button, type ButtonProps } from './button';
 
@@ -41,11 +41,17 @@ const IconButtonImpl = <C extends ElementType = 'button'>(
     <Button
       {...(rest as IconButtonProps<any>)}
       size={local.size}
-      iconLeft={local.icon}
-      px="0"
-      w={resolvedSize()}
-      minW={resolvedSize()}
-    />
+      p="0"
+      width={resolvedSize()}
+      minWidth={resolvedSize()}
+      height={resolvedSize()}
+      minHeight={resolvedSize()}
+      aspectRatio="1 / 1"
+    >
+      <span data-slot="icon" aria-hidden="true">
+        {local.icon}
+      </span>
+    </Button>
   );
 };
 

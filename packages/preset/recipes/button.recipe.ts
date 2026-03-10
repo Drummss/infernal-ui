@@ -26,6 +26,17 @@ export const buttonRecipe = defineRecipe({
       cursor: 'not-allowed',
       pointerEvents: 'none',
     },
+    '& [data-slot=icon]': {
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      lineHeight: '0',
+      flexShrink: '0',
+    },
+    '& [data-slot=icon] > svg': {
+      width: '4',
+      height: '4',
+    },
   },
   variants: {
     variant: {
@@ -56,9 +67,33 @@ export const buttonRecipe = defineRecipe({
       },
     },
     size: {
-      sm: { h: '8', px: '3', fontSize: 'sm' },
-      md: { h: '10', px: '4', fontSize: 'sm' },
-      lg: { h: '12', px: '5', fontSize: 'md' },
+      sm: {
+        h: '8',
+        px: '3',
+        fontSize: 'sm',
+        '& [data-slot=icon] > svg': {
+          width: '3.5',
+          height: '3.5',
+        },
+      },
+      md: {
+        h: '10',
+        px: '4',
+        fontSize: 'sm',
+        '& [data-slot=icon] > svg': {
+          width: '4',
+          height: '4',
+        },
+      },
+      lg: {
+        h: '12',
+        px: '5',
+        fontSize: 'md',
+        '& [data-slot=icon] > svg': {
+          width: '5',
+          height: '5',
+        },
+      },
     },
     loading: {
       true: {

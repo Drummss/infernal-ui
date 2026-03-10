@@ -46,10 +46,7 @@ const ButtonImpl = <C extends ElementType = 'button'>(
   return (
     <BaseButton {...(rest as ButtonProps<any>)} as={local.as} type={type}>
       {local.iconLeft ? (
-        <span
-          aria-hidden="true"
-          style={{ display: 'inline-flex', 'align-items': 'center', 'line-height': 0 }}
-        >
+        <span data-slot="icon" aria-hidden="true">
           {local.iconLeft}
         </span>
       ) : null}
@@ -57,10 +54,7 @@ const ButtonImpl = <C extends ElementType = 'button'>(
       {local.children}
 
       {local.iconRight ? (
-        <span
-          aria-hidden="true"
-          style={{ display: 'inline-flex', 'align-items': 'center', 'line-height': 0 }}
-        >
+        <span data-slot="icon" aria-hidden="true">
           {local.iconRight}
         </span>
       ) : null}
