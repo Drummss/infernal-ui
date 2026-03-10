@@ -9,10 +9,16 @@
     "format": "biome check --write .",
     "check-types": "turbo run check-types",
     "ci:check": "turbo run check-types build --output-logs=new-only",
-    "ci:affected": "turbo run check-types build --affected --output-logs=new-only"
+    "ci:affected": "turbo run check-types build --affected --output-logs=new-only",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish",
+    "pre:enter": "changeset pre enter next",
+    "pre:exit": "changeset pre exit"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.4",
+    "@changesets/cli": "^2.30.0",
     "turbo": "^2.8.10",
     "typescript": "5.9.3"
   },
