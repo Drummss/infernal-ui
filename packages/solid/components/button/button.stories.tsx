@@ -1,6 +1,8 @@
 import { expect, within } from 'storybook/test';
 import preview from '#.storybook/preview';
+import { CheckIcon, ChevronDownIcon } from '../icons';
 import { Button } from './button';
+import { IconButton } from './icon-button';
 
 const meta = preview.meta({
   title: 'Components/Button',
@@ -46,6 +48,30 @@ export const Disabled = meta.story({
     const button = canvas.getByRole('button', { name: 'Disabled' });
     await expect(button).toBeDisabled();
   },
+});
+
+export const WithIcons = meta.story({
+  render: () => (
+    <div style={{ display: 'flex', gap: '12px' }}>
+      <Button iconLeft={<CheckIcon />}>Confirm</Button>
+      <Button variant="outline" iconRight={<ChevronDownIcon />}>
+        Options
+      </Button>
+    </div>
+  ),
+});
+
+export const IconOnly = meta.story({
+  render: () => (
+    <div style={{ display: 'flex', gap: '12px' }}>
+      <IconButton aria-label="Confirm" icon={<CheckIcon />} />
+      <IconButton
+        aria-label="More options"
+        variant="outline"
+        icon={<ChevronDownIcon />}
+      />
+    </div>
+  ),
 });
 
 export const AsLink = meta.story({

@@ -3,7 +3,7 @@ import type {
   JsxStyleProps,
   RecipeVariantProps,
 } from '@infernalui/styled-system/types';
-import type { JSX } from 'solid-js';
+import { splitProps, type JSX } from 'solid-js';
 import type { ElementType, InfernalProps } from '../../types/types';
 import { buttonRecipe } from './button.recipe';
 
@@ -12,9 +12,14 @@ type ButtonStyleProps = JsxStyleProps &
     unstyled?: boolean;
   };
 
+type ButtonOwnProps = {
+  iconLeft?: JSX.Element;
+  iconRight?: JSX.Element;
+};
+
 export type ButtonProps<C extends ElementType = 'button'> = InfernalProps<
   C,
-  ButtonStyleProps
+  ButtonStyleProps & ButtonOwnProps
 >;
 
 const BaseButton = styled('button', buttonRecipe);
@@ -25,12 +30,42 @@ type ButtonComponent = typeof BaseButton &
 const ButtonImpl = <C extends ElementType = 'button'>(
   props: ButtonProps<C>,
 ) => {
-  const shouldDefaultType = !props.as || props.as === 'button';
-  const type = shouldDefaultType
-    ? ((props as ButtonProps<any>).type ?? 'button')
-    : (props as ButtonProps<any>).type;
+  const [local, rest] = splitProps(props as ButtonProps<any>, [
+    'as',
+    'type',
+    'children',
+    'iconLeft',
+    'iconRight',
+  ]);
 
-  return <BaseButton {...(props as ButtonProps<any>)} type={type} />;
+  const shouldDefaultType = !local.as || local.as === 'button';
+  const type = shouldDefaultType
+    ? ((local.type as ButtonProps<any>['type']) ?? 'button')
+    : (local.type as ButtonProps<any>['type']);
+
+  return (
+    <BaseButton {...(rest as ButtonProps<any>)} as={local.as} type={type}>
+      {local.iconLeft ? (
+        <span
+          aria-hidden="true"
+          style={{ display: 'inline-flex', 'align-items': 'center', 'line-height': 0 }}
+        >
+          {local.iconLeft}
+        </span>
+      ) : null}
+
+      {local.children}
+
+      {local.iconRight ? (
+        <span
+          aria-hidden="true"
+          style={{ display: 'inline-flex', 'align-items': 'center', 'line-height': 0 }}
+        >
+          {local.iconRight}
+        </span>
+      ) : null}
+    </BaseButton>
+  );
 };
 
 export const Button = ButtonImpl as ButtonComponent;

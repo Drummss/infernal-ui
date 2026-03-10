@@ -1,4 +1,4 @@
-import { Box, Button } from '@infernalui/solid';
+import { Box, Button, CheckIcon, ChevronDownIcon, IconButton } from '@infernalui/solid';
 import { createSignal, type ParentProps } from 'solid-js';
 
 type KitchenSinkPanelProps = ParentProps<{
@@ -42,7 +42,7 @@ export const ButtonTestsPage = () => {
         </Box>
 
         <Box as="p" color="typography.color.muted">
-          Button recipe variants, sizing, and click events.
+          Button recipe variants, sizing, icon props, and click events.
         </Box>
       </Box>
 
@@ -59,6 +59,39 @@ export const ButtonTestsPage = () => {
           <Button size="sm">Small</Button>
           <Button size="md">Medium</Button>
           <Button size="lg">Large</Button>
+        </Box>
+      </KitchenSinkPanel>
+
+      <KitchenSinkPanel title="With Icons">
+        <Box display="flex" gap="3" alignItems="center" flexWrap="wrap">
+          <Button iconLeft={<CheckIcon />}>Confirm</Button>
+          <Button variant="outline" iconRight={<ChevronDownIcon />}>
+            More Options
+          </Button>
+          <Button
+            variant="ghost"
+            iconLeft={<CheckIcon size={16} />}
+            iconRight={<ChevronDownIcon size={16} />}
+          >
+            Both Sides
+          </Button>
+        </Box>
+      </KitchenSinkPanel>
+
+      <KitchenSinkPanel title="IconButton">
+        <Box display="flex" gap="3" alignItems="center" flexWrap="wrap">
+          <IconButton aria-label="Confirm action" icon={<CheckIcon />} />
+          <IconButton
+            aria-label="Open options"
+            variant="outline"
+            icon={<ChevronDownIcon />}
+          />
+          <IconButton
+            aria-label="Small confirm action"
+            size="sm"
+            variant="ghost"
+            icon={<CheckIcon />}
+          />
         </Box>
       </KitchenSinkPanel>
 

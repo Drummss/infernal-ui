@@ -5,6 +5,7 @@ export const buttonRecipe = cva({
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: '2',
     fontWeight: 'medium',
     lineHeight: '1.2',
     borderWidth: '1px',

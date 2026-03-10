@@ -5,6 +5,7 @@ export * from './field';
 export * from './fieldset';
 export * from './flex';
 export * from './heading';
+export * from './icons';
 export * from './input';
 export * from './select';
 export * from './textarea';

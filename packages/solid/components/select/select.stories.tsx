@@ -23,7 +23,7 @@ const SelectParts = () => (
     <Select.Control>
       <Select.Trigger>
         <Select.ValueText placeholder="Select country code" />
-        <Select.Indicator>v</Select.Indicator>
+        <Select.Indicator />
       </Select.Trigger>
     </Select.Control>
     <Portal>
@@ -34,7 +34,7 @@ const SelectParts = () => (
               {(item) => (
                 <Select.Item item={item}>
                   <Select.ItemText>{item.label}</Select.ItemText>
-                  <Select.ItemIndicator>✓</Select.ItemIndicator>
+                  <Select.ItemIndicator />
                 </Select.Item>
               )}
             </For>

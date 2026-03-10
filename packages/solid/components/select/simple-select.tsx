@@ -75,7 +75,7 @@ export const SimpleSelect = (props: SimpleSelectProps) => {
       <Select.Control>
         <Select.Trigger>
           <Select.ValueText placeholder={local.placeholder} />
-          <Select.Indicator>{local.indicator ?? 'v'}</Select.Indicator>
+          <Select.Indicator>{local.indicator}</Select.Indicator>
         </Select.Trigger>
       </Select.Control>
 
@@ -87,9 +87,7 @@ export const SimpleSelect = (props: SimpleSelectProps) => {
                 {(item) => (
                   <Select.Item item={item}>
                     <Select.ItemText>{item.label}</Select.ItemText>
-                    <Select.ItemIndicator>
-                      {local.itemIndicator ?? '✓'}
-                    </Select.ItemIndicator>
+                    <Select.ItemIndicator>{local.itemIndicator}</Select.ItemIndicator>
                   </Select.Item>
                 )}
               </For>

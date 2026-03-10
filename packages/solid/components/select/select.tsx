@@ -1,5 +1,7 @@
 import { Select as ArkSelect } from '@ark-ui/solid/select';
 import { createStyleContext } from '@infernalui/styled-system/jsx';
+import { splitProps, type ComponentProps } from 'solid-js';
+import { CheckIcon, ChevronDownIcon } from '../icons';
 import { selectRecipe } from './select.recipe';
 
 const { withProvider, withContext } = createStyleContext(selectRecipe);
@@ -9,7 +11,7 @@ export const SelectLabel = withContext(ArkSelect.Label, 'label');
 export const SelectControl = withContext(ArkSelect.Control, 'control');
 export const SelectTrigger = withContext(ArkSelect.Trigger, 'trigger');
 export const SelectValueText = withContext(ArkSelect.ValueText, 'valueText');
-export const SelectIndicator = withContext(ArkSelect.Indicator, 'indicator');
+const BaseSelectIndicator = withContext(ArkSelect.Indicator, 'indicator');
 export const SelectClearTrigger = withContext(
   ArkSelect.ClearTrigger,
   'clearTrigger',
@@ -24,11 +26,34 @@ export const SelectItemGroupLabel = withContext(
 );
 export const SelectItem = withContext(ArkSelect.Item, 'item');
 export const SelectItemText = withContext(ArkSelect.ItemText, 'itemText');
-export const SelectItemIndicator = withContext(
+const BaseSelectItemIndicator = withContext(
   ArkSelect.ItemIndicator,
   'itemIndicator',
 );
 export const SelectHiddenSelect = ArkSelect.HiddenSelect;
+
+type SelectIndicatorProps = ComponentProps<typeof BaseSelectIndicator>;
+type SelectItemIndicatorProps = ComponentProps<typeof BaseSelectItemIndicator>;
+
+export const SelectIndicator = (props: SelectIndicatorProps) => {
+  const [local, rest] = splitProps(props, ['children']);
+
+  return (
+    <BaseSelectIndicator {...rest}>
+      {local.children ?? <ChevronDownIcon />}
+    </BaseSelectIndicator>
+  );
+};
+
+export const SelectItemIndicator = (props: SelectItemIndicatorProps) => {
+  const [local, rest] = splitProps(props, ['children']);
+
+  return (
+    <BaseSelectItemIndicator {...rest}>
+      {local.children ?? <CheckIcon />}
+    </BaseSelectItemIndicator>
+  );
+};
 
 export const Select = {
   Root: SelectRoot,
