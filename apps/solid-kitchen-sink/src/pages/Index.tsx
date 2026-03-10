@@ -1,4 +1,4 @@
-import { Box, Button } from '@infernalui/solid';
+import { Box, Button, SimpleCheckbox } from '@infernalui/solid';
 import { createSignal, type ParentProps } from 'solid-js';
 
 type KitchenSinkPanelProps = ParentProps<{
@@ -72,6 +72,10 @@ export const IndexPage = () => {
         <Button onClick={() => setCount((value) => value + 1)}>
           Local Counter: {count()}
         </Button>
+      </KitchenSinkPanel>
+
+      <KitchenSinkPanel title="Testing">
+        <SimpleCheckbox label="Checkbox" />
       </KitchenSinkPanel>
     </Box>
   );

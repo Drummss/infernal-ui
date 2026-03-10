@@ -26,7 +26,7 @@ const withInfernalTheme = createJSXDecorator((Story, context) => {
   createEffect(() => {
     const doc = context.canvasElement.ownerDocument;
     const canvasParent = context.canvasElement.parentElement;
-    const canvasBackground = token.var('colors.palette.background.canvas');
+    const canvasBackground = token.var('colors.palette.background');
 
     doc.body.style.backgroundColor = canvasBackground;
     doc.documentElement.style.backgroundColor = canvasBackground;
@@ -42,7 +42,7 @@ const withInfernalTheme = createJSXDecorator((Story, context) => {
   );
 });
 
-export default definePreview({
+const preview = definePreview({
   addons: [addonDocs(), addonA11y()],
   globalTypes: {
     colorMode: {
@@ -100,3 +100,7 @@ export default definePreview({
   // All components will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   // tags: ['autodocs'],
 });
+
+export default preview as unknown as {
+  meta: (...args: any[]) => any;
+};
