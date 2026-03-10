@@ -26,7 +26,7 @@ export {
 } from './slot-recipes';
 
 export const infernalPreset = definePreset({
-  name: '@infernalui/preset',
+  name: '@infernal-ui/preset',
   theme: {
     extend: {
       tokens: {

@@ -1,7 +1,7 @@
 import { Fieldset as ArkFieldset } from '@ark-ui/solid/fieldset';
-import { createStyleContext } from '@infernalui/styled-system/jsx';
-import { fieldset } from '@infernalui/styled-system/recipes';
-import type { RecipeVariantProps } from '@infernalui/styled-system/types';
+import { createStyleContext } from '@infernal-ui/styled-system/jsx';
+import { fieldset } from '@infernal-ui/styled-system/recipes';
+import type { RecipeVariantProps } from '@infernal-ui/styled-system/types';
 
 export type FieldsetRecipeVariants = RecipeVariantProps<typeof fieldset>;
 

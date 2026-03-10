@@ -4,8 +4,8 @@ InfernalUI is a Turborepo monorepo centered on a SolidJS component library.
 
 ## Workspaces
 
-- `packages/solid`: SolidJS UI library (`@infernalui/solid`) using PandaCSS + Ark UI.
-- `packages/styled-system`: Shared Panda `styled-system` package (`@infernalui/styled-system`).
+- `packages/solid`: SolidJS UI library (`@infernal-ui/solid`) using PandaCSS + Ark UI.
+- `packages/styled-system`: Shared Panda `styled-system` package (`@infernal-ui/styled-system`).
 - `apps/solid-kitchen-sink`: Vite app used to dogfood and manually validate `packages/solid`.
 
 ## Tooling
@@ -30,29 +30,29 @@ pnpm format
 Useful targeted commands:
 
 ```sh
-pnpm --filter @infernalui/solid storybook
-pnpm --filter @infernalui/solid build-storybook
+pnpm --filter @infernal-ui/solid storybook
+pnpm --filter @infernal-ui/solid build-storybook
 pnpm --filter solid-kitchen-sink dev
 ```
 
 `pnpm dev` runs all workspace dev watchers via Turborepo:
-- `@infernalui/styled-system`: Panda codegen/cssgen watch
-- `@infernalui/solid`: Panda ship watch for `dist/panda.buildinfo.json`
+- `@infernal-ui/styled-system`: Panda codegen/cssgen watch
+- `@infernal-ui/solid`: Panda ship watch for `dist/panda.buildinfo.json`
 - `solid-kitchen-sink`: Panda codegen/cssgen watch + Vite dev server
 
-## Consuming `@infernalui/solid` (Panda)
+## Consuming `@infernal-ui/solid` (Panda)
 
 Install:
 
 ```sh
-pnpm add @infernalui/solid @infernalui/styled-system
+pnpm add @infernal-ui/solid @infernal-ui/styled-system
 pnpm add -D @pandacss/dev
 ```
 
 Consumer `panda.config.ts`:
 
 ```ts
-import { defineInfernalConfig } from '@infernalui/solid/preset';
+import { defineInfernalConfig } from '@infernal-ui/solid/preset';
 
 export default defineInfernalConfig({});
 ```
@@ -60,7 +60,7 @@ export default defineInfernalConfig({});
 To add an app-specific accent theme:
 
 ```ts
-import { createAccentTheme, defineInfernalConfig } from '@infernalui/solid/preset';
+import { createAccentTheme, defineInfernalConfig } from '@infernal-ui/solid/preset';
 
 export default defineInfernalConfig({
   themes: {

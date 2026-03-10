@@ -1,7 +1,7 @@
 import { Select as ArkSelect } from '@ark-ui/solid/select';
-import { createStyleContext } from '@infernalui/styled-system/jsx';
-import { select } from '@infernalui/styled-system/recipes';
-import type { RecipeVariantProps } from '@infernalui/styled-system/types';
+import { createStyleContext } from '@infernal-ui/styled-system/jsx';
+import { select } from '@infernal-ui/styled-system/recipes';
+import type { RecipeVariantProps } from '@infernal-ui/styled-system/types';
 import { splitProps, type ComponentProps } from 'solid-js';
 import { CheckIcon, ChevronDownIcon } from '../icons';
 

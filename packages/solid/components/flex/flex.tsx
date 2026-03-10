@@ -1,4 +1,4 @@
-import { styled } from '@infernalui/styled-system/jsx';
+import { styled } from '@infernal-ui/styled-system/jsx';
 import type { JSX } from 'solid-js';
 import type { ElementType } from '../../types/types';
 import { Box, type BoxProps } from '../box';

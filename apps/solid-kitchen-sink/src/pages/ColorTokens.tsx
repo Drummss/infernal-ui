@@ -1,5 +1,5 @@
-import { Box } from '@infernalui/solid';
-import { token } from '@infernalui/styled-system/tokens';
+import { Box } from '@infernal-ui/solid';
+import { token } from '@infernal-ui/styled-system/tokens';
 
 const pandaScaleFamilies = [
   'amber',

@@ -1,5 +1,5 @@
-import { heading } from '@infernalui/styled-system/recipes';
-import type { RecipeVariantProps } from '@infernalui/styled-system/types';
+import { heading } from '@infernal-ui/styled-system/recipes';
+import type { RecipeVariantProps } from '@infernal-ui/styled-system/types';
 import { mergeProps, splitProps } from 'solid-js';
 import type { ElementType, InfernalProps } from '../../types/types';
 import { Box } from '../box';

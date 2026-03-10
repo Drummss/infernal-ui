@@ -1,4 +1,4 @@
-import type { ThemeName } from '@infernalui/styled-system/themes';
+import type { ThemeName } from '@infernal-ui/styled-system/themes';
 import {
   type Accessor,
   createContext,

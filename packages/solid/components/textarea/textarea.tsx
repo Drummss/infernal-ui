@@ -1,7 +1,7 @@
 import { Field as ArkField } from '@ark-ui/solid/field';
-import { styled } from '@infernalui/styled-system/jsx';
-import { textarea } from '@infernalui/styled-system/recipes';
-import type { RecipeVariantProps } from '@infernalui/styled-system/types';
+import { styled } from '@infernal-ui/styled-system/jsx';
+import { textarea } from '@infernal-ui/styled-system/recipes';
+import type { RecipeVariantProps } from '@infernal-ui/styled-system/types';
 
 export type TextareaRecipeVariants = RecipeVariantProps<typeof textarea>;
 export type TextareaVariants = TextareaRecipeVariants;

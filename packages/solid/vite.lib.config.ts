@@ -15,10 +15,10 @@ const isExternal = (id: string) =>
   id.startsWith('solid-js/') ||
   id === '@ark-ui/solid' ||
   id.startsWith('@ark-ui/solid/') ||
-  id === '@infernalui/preset' ||
-  id.startsWith('@infernalui/preset/') ||
-  id === '@infernalui/styled-system' ||
-  id.startsWith('@infernalui/styled-system/') ||
+  id === '@infernal-ui/preset' ||
+  id.startsWith('@infernal-ui/preset/') ||
+  id === '@infernal-ui/styled-system' ||
+  id.startsWith('@infernal-ui/styled-system/') ||
   id === '@pandacss/dev' ||
   id.startsWith('@pandacss/dev/');
 

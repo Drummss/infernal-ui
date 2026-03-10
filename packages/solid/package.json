@@ -1,9 +1,12 @@
 {
-  "name": "@infernalui/solid",
+  "name": "@infernal-ui/solid",
   "version": "0.0.0",
   "license": "Apache-2.0",
   "type": "module",
   "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist",
     "types"
@@ -62,8 +65,8 @@
     "vitest": "^4.0.18"
   },
   "dependencies": {
-    "@infernalui/preset": "workspace:*",
-    "@infernalui/styled-system": "workspace:*",
+    "@infernal-ui/preset": "workspace:*",
+    "@infernal-ui/styled-system": "workspace:*",
     "@ark-ui/solid": "^5.31.0"
   },
   "peerDependencies": {

@@ -1,7 +1,7 @@
 import {
   createAccentTheme,
   defineInfernalConfig,
-} from '@infernalui/solid/preset';
+} from '@infernal-ui/solid/preset';
 
 export default defineInfernalConfig({
   themes: {

@@ -1,5 +1,5 @@
-import { styled } from '@infernalui/styled-system/jsx';
-import type { JsxStyleProps } from '@infernalui/styled-system/types';
+import { styled } from '@infernal-ui/styled-system/jsx';
+import type { JsxStyleProps } from '@infernal-ui/styled-system/types';
 import type { JSX } from 'solid-js';
 import type { ElementType, InfernalProps } from '../../types/types';
 

@@ -1,8 +1,11 @@
 {
-  "name": "@infernalui/styled-system",
+  "name": "@infernal-ui/styled-system",
   "version": "0.0.0",
   "license": "Apache-2.0",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "sideEffects": [
     "**/*.css"
   ],
@@ -58,7 +61,7 @@
     "solid-js": "^1.9.11"
   },
   "devDependencies": {
-    "@infernalui/preset": "workspace:*",
+    "@infernal-ui/preset": "workspace:*",
     "@pandacss/dev": "^1.8.2",
     "solid-js": "^1.9.11",
     "typescript": "^5.9.3"

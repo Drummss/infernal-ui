@@ -1,4 +1,4 @@
-import { Box } from '@infernalui/solid';
+import { Box } from '@infernal-ui/solid';
 import type { ParentProps } from 'solid-js';
 
 type KitchenSinkPanelProps = ParentProps<{

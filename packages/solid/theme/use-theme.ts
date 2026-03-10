@@ -1,4 +1,4 @@
-import { type Token, token } from '@infernalui/styled-system/tokens';
+import { type Token, token } from '@infernal-ui/styled-system/tokens';
 
 type StripPrefix<
   T extends string,

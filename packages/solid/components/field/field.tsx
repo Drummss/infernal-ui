@@ -1,7 +1,7 @@
 import { Field as ArkField } from '@ark-ui/solid/field';
-import { createStyleContext } from '@infernalui/styled-system/jsx';
-import { field } from '@infernalui/styled-system/recipes';
-import type { RecipeVariantProps } from '@infernalui/styled-system/types';
+import { createStyleContext } from '@infernal-ui/styled-system/jsx';
+import { field } from '@infernal-ui/styled-system/recipes';
+import type { RecipeVariantProps } from '@infernal-ui/styled-system/types';
 
 export type FieldRecipeVariants = RecipeVariantProps<typeof field>;
 

@@ -1,4 +1,4 @@
-import { Box, Button, SimpleCheckbox } from '@infernalui/solid';
+import { Box, Button, SimpleCheckbox } from '@infernal-ui/solid';
 import { createSignal, type ParentProps } from 'solid-js';
 
 type KitchenSinkPanelProps = ParentProps<{

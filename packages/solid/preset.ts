@@ -5,7 +5,7 @@ import {
   infernalAccentNames,
   infernalAccentThemes,
   infernalPreset,
-} from '@infernalui/preset';
+} from '@infernal-ui/preset';
 import { type Config, defineConfig } from '@pandacss/dev';
 import pandaPreset from '@pandacss/dev/presets';
 
@@ -36,7 +36,7 @@ export type InfernalConfigInput = Omit<
 
 const DEFAULT_INCLUDE = [
   './src/**/*.{ts,tsx}',
-  './node_modules/@infernalui/solid/dist/panda.buildinfo.json',
+  './node_modules/@infernal-ui/solid/dist/panda.buildinfo.json',
 ] as const;
 
 const unique = (values: readonly string[]) => [...new Set(values)];
@@ -74,7 +74,7 @@ export const defineInfernalConfig = (config: InfernalConfigInput = {}) => {
   return defineConfig({
     preflight: preflight ?? true,
     jsxFramework: jsxFramework ?? 'solid',
-    importMap: importMap ?? '@infernalui/styled-system',
+    importMap: importMap ?? '@infernal-ui/styled-system',
     include: unique([...DEFAULT_INCLUDE, ...(userInclude ?? [])]),
     outdir: outdir ?? 'styled-system',
     ...rest,

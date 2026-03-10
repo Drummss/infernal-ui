@@ -1,10 +1,10 @@
 import { defineConfig } from '@pandacss/dev';
 import pandaPreset from '@pandacss/dev/presets';
-import { infernalPreset } from '@infernalui/preset';
+import { infernalPreset } from '@infernal-ui/preset';
 
 export default defineConfig({
   jsxFramework: 'solid',
-  importMap: '@infernalui/styled-system',
+  importMap: '@infernal-ui/styled-system',
   presets: [pandaPreset, infernalPreset],
   include: ['./components/**/*.{ts,tsx}'],
   exclude: ['./components/**/*.stories.tsx', './dist/**/*', './node_modules/**/*'],

@@ -6,7 +6,7 @@ import {
   type InfernalTheme,
   SimpleSelect,
   useInfernalContext,
-} from '@infernalui/solid';
+} from '@infernal-ui/solid';
 import { A, useLocation } from '@solidjs/router';
 import type { ParentProps } from 'solid-js';
 

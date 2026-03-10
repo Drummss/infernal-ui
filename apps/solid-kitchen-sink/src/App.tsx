@@ -2,7 +2,7 @@ import {
   type InfernalAccentTheme,
   InfernalContext,
   type InfernalTheme,
-} from '@infernalui/solid';
+} from '@infernal-ui/solid';
 import { Route, Router } from '@solidjs/router';
 import { createSignal } from 'solid-js';
 import { IndexLayout } from './layouts/IndexLayout';

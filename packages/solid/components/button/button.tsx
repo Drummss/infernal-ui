@@ -1,9 +1,9 @@
-import { styled } from '@infernalui/styled-system/jsx';
-import { button } from '@infernalui/styled-system/recipes';
+import { styled } from '@infernal-ui/styled-system/jsx';
+import { button } from '@infernal-ui/styled-system/recipes';
 import type {
   JsxStyleProps,
   RecipeVariantProps,
-} from '@infernalui/styled-system/types';
+} from '@infernal-ui/styled-system/types';
 import { splitProps, type JSX } from 'solid-js';
 import type { ElementType, InfernalProps } from '../../types/types';
 

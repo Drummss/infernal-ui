@@ -1,7 +1,7 @@
 import { Checkbox as ArkCheckbox } from '@ark-ui/solid/checkbox';
-import { createStyleContext } from '@infernalui/styled-system/jsx';
-import { checkbox } from '@infernalui/styled-system/recipes';
-import type { RecipeVariantProps } from '@infernalui/styled-system/types';
+import { createStyleContext } from '@infernal-ui/styled-system/jsx';
+import { checkbox } from '@infernal-ui/styled-system/recipes';
+import type { RecipeVariantProps } from '@infernal-ui/styled-system/types';
 
 export type CheckboxRecipeVariants = RecipeVariantProps<typeof checkbox>;
 

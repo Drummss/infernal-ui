@@ -1,6 +1,6 @@
-import '@infernalui/styled-system/styles.css';
-import type { ThemeName } from '@infernalui/styled-system/themes';
-import { token } from '@infernalui/styled-system/tokens';
+import '@infernal-ui/styled-system/styles.css';
+import type { ThemeName } from '@infernal-ui/styled-system/themes';
+import { token } from '@infernal-ui/styled-system/tokens';
 import addonA11y from '@storybook/addon-a11y';
 import addonDocs from '@storybook/addon-docs';
 import { createEffect, createMemo } from 'solid-js';
