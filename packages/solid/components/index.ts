@@ -3,6 +3,7 @@ export * from './button';
 export * from './checkbox';
 export * from './field';
 export * from './fieldset';
+export * from './flex';
 export * from './heading';
 export * from './input';
 export * from './select';
