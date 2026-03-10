@@ -22,13 +22,15 @@ const isExternal = (id: string) =>
   id === '@pandacss/dev' ||
   id.startsWith('@pandacss/dev/');
 
+const isWatch = process.argv.includes('--watch');
+
 export default defineConfig({
   plugins: [solid()],
   build: {
     target: 'esnext',
     outDir: 'dist',
     // Keep emitted declarations during JS watch rebuilds.
-    emptyOutDir: process.argv.every((arg) => arg !== '--watch'),
+    emptyOutDir: !isWatch,
     lib: {
       entry: {
         index: entry('index.ts'),
@@ -41,7 +43,7 @@ export default defineConfig({
       external: isExternal,
       output: {
         entryFileNames: '[name].js',
-        chunkFileNames: 'chunks/[name]-[hash].js',
+        chunkFileNames: isWatch ? 'chunks/[name].js' : 'chunks/[name]-[hash].js',
       },
     },
   },
