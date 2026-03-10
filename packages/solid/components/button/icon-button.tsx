@@ -39,7 +39,6 @@ const IconButtonImpl = <C extends ElementType = 'button'>(
 
   return (
     <Button
-      {...(rest as IconButtonProps<any>)}
       size={local.size}
       p="0"
       width={resolvedSize()}
@@ -47,6 +46,7 @@ const IconButtonImpl = <C extends ElementType = 'button'>(
       height={resolvedSize()}
       minHeight={resolvedSize()}
       aspectRatio="1 / 1"
+      {...rest}
     >
       <span data-slot="icon" aria-hidden="true">
         {local.icon}

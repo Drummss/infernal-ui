@@ -101,6 +101,7 @@ const preview = definePreview({
   // tags: ['autodocs'],
 });
 
-export default preview as unknown as {
+export default preview as {
+  // biome-ignore lint/suspicious/noExplicitAny: Storybook meta helper accepts heterogeneous story args.
   meta: (...args: any[]) => any;
 };

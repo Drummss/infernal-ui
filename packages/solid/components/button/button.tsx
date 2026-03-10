@@ -4,7 +4,7 @@ import type {
   JsxStyleProps,
   RecipeVariantProps,
 } from '@infernal-ui/styled-system/types';
-import { splitProps, type JSX } from 'solid-js';
+import { type JSX, splitProps } from 'solid-js';
 import type { ElementType, InfernalProps } from '../../types/types';
 
 type ButtonStyleProps = JsxStyleProps &
@@ -30,21 +30,18 @@ type ButtonComponent = typeof BaseButton &
 const ButtonImpl = <C extends ElementType = 'button'>(
   props: ButtonProps<C>,
 ) => {
-  const [local, rest] = splitProps(props as ButtonProps<any>, [
-    'as',
+  const [local, rest] = splitProps(props as ButtonProps<'button'>, [
     'type',
     'children',
     'iconLeft',
     'iconRight',
   ]);
 
-  const shouldDefaultType = !local.as || local.as === 'button';
-  const type = shouldDefaultType
-    ? ((local.type as ButtonProps<any>['type']) ?? 'button')
-    : (local.type as ButtonProps<any>['type']);
+  const shouldDefaultType = props.as === undefined;
+  const type = shouldDefaultType ? (local.type ?? 'button') : local.type;
 
   return (
-    <BaseButton {...(rest as ButtonProps<any>)} as={local.as} type={type}>
+    <BaseButton as="button" type={type} {...rest}>
       {local.iconLeft ? (
         <span data-slot="icon" aria-hidden="true">
           {local.iconLeft}

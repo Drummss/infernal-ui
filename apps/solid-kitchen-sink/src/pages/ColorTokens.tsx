@@ -167,7 +167,9 @@ const Swatch = (props: SwatchProps) => (
     <Box
       h="20"
       style={{
-        'background-color': token.var(`colors.${props.tokenPath}` as any),
+        'background-color': token.var(
+          `colors.${props.tokenPath}` as Parameters<typeof token.var>[0],
+        ),
       }}
       css={
         shouldShowCheckerboard(props.tokenPath)
