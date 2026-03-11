@@ -1,44 +1,6 @@
-# InfernalUI
+# Infernal UI 🔥
 
-InfernalUI is a Turborepo monorepo centered on a SolidJS component library.
-
-## Workspaces
-
-- `packages/solid`: SolidJS UI library (`@infernal-ui/solid`) using PandaCSS + Ark UI.
-- `packages/styled-system`: Shared Panda `styled-system` package (`@infernal-ui/styled-system`).
-- `apps/solid-kitchen-sink`: Vite app used to dogfood and manually validate `packages/solid`.
-
-## Tooling
-
-- Package manager: `pnpm`
-- Task runner: `turbo`
-- Lint/format: `Biome`
-- Language: `TypeScript`
-
-## Commands
-
-From the repo root:
-
-```sh
-pnpm dev
-pnpm build
-pnpm check-types
-pnpm lint
-pnpm format
-```
-
-Useful targeted commands:
-
-```sh
-pnpm --filter @infernal-ui/solid storybook
-pnpm --filter @infernal-ui/solid build-storybook
-pnpm --filter solid-kitchen-sink dev
-```
-
-`pnpm dev` runs all workspace dev watchers via Turborepo:
-- `@infernal-ui/styled-system`: Panda codegen/cssgen watch
-- `@infernal-ui/solid`: Panda ship watch for `dist/panda.buildinfo.json`
-- `solid-kitchen-sink`: Panda codegen/cssgen watch + Vite dev server
+Infernal UI is a component library for SolidJS.
 
 ## Getting Started
 
@@ -150,3 +112,41 @@ export default defineInfernalConfig({
   },
 });
 ```
+
+## Workspaces
+
+- `packages/solid`: SolidJS UI library (`@infernal-ui/solid`) using PandaCSS + Ark UI.
+- `packages/styled-system`: Shared Panda `styled-system` package (`@infernal-ui/styled-system`).
+- `apps/solid-kitchen-sink`: Vite app used to dogfood and manually validate `packages/solid`.
+
+## Tooling
+
+- Package manager: `pnpm`
+- Task runner: `turbo`
+- Lint/format: `Biome`
+- Language: `TypeScript`
+
+## Commands
+
+From the repo root:
+
+```sh
+pnpm dev
+pnpm build
+pnpm check-types
+pnpm lint
+pnpm format
+```
+
+Useful targeted commands:
+
+```sh
+pnpm --filter @infernal-ui/solid storybook
+pnpm --filter @infernal-ui/solid build-storybook
+pnpm --filter solid-kitchen-sink dev
+```
+
+`pnpm dev` runs all workspace dev watchers via Turborepo:
+- `@infernal-ui/styled-system`: Panda codegen/cssgen watch
+- `@infernal-ui/solid`: Panda ship watch for `dist/panda.buildinfo.json`
+- `solid-kitchen-sink`: Panda codegen/cssgen watch + Vite dev server
