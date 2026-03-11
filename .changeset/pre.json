@@ -7,5 +7,7 @@
     "@infernal-ui/solid": "0.0.0",
     "@infernal-ui/styled-system": "0.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "quick-cobras-love"
+  ]
 }
