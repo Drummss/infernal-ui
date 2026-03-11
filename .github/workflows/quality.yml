@@ -10,18 +10,8 @@ on:
 
 jobs:
   checks:
-    name: ${{ matrix.name }}
+    name: Quality Checks
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - name: Type Check
-            command: pnpm check-types
-          - name: Build
-            command: pnpm build
-          - name: Lint
-            command: pnpm lint
 
     steps:
       - name: Checkout
@@ -41,5 +31,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run check
-        run: ${{ matrix.command }}
+      - name: Run Typecheck + Build Pipeline
+        run: pnpm ci:check
+
+      - name: Run Lint
+        run: pnpm lint
