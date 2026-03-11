@@ -1,9 +1,6 @@
 name: Quality
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -11,6 +8,7 @@ on:
 jobs:
   checks:
     name: Quality Checks
+    if: ${{ !startsWith(github.head_ref, 'changeset-release/') }}
     runs-on: ubuntu-latest
 
     steps:
