@@ -8,6 +8,8 @@
     "@infernal-ui/styled-system": "0.0.0"
   },
   "changesets": [
-    "quick-cobras-love"
+    "quick-cobras-love",
+    "shy-frogs-clean",
+    "slick-tigers-throw"
   ]
 }
