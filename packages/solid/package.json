@@ -26,6 +26,10 @@
       "types": "./dist/preset.d.ts",
       "import": "./dist/preset.js"
     },
+    "./vite": {
+      "types": "./dist/vite.d.ts",
+      "import": "./dist/vite.js"
+    },
     "./panda.buildinfo.json": "./dist/panda.buildinfo.json",
     "./package.json": "./package.json"
   },

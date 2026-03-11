@@ -40,16 +40,21 @@ pnpm --filter solid-kitchen-sink dev
 - `@infernal-ui/solid`: Panda ship watch for `dist/panda.buildinfo.json`
 - `solid-kitchen-sink`: Panda codegen/cssgen watch + Vite dev server
 
-## Consuming `@infernal-ui/solid` (Panda)
+## Getting Started
 
-Install:
+InfernalUI currently expects PandaCSS in the consuming app.
+SolidStart usage is currently untested; dedicated SolidStart guidance will be added in a future release after SSR/hydration validation.
+
+### SolidJS + Vite
+
+1. Install dependencies:
 
 ```sh
 pnpm add @infernal-ui/solid @infernal-ui/styled-system
 pnpm add -D @pandacss/dev
 ```
 
-Consumer `panda.config.ts`:
+2. Create `panda.config.ts`:
 
 ```ts
 import { defineInfernalConfig } from '@infernal-ui/solid/preset';
@@ -57,7 +62,55 @@ import { defineInfernalConfig } from '@infernal-ui/solid/preset';
 export default defineInfernalConfig({});
 ```
 
-To add an app-specific accent theme:
+3. Configure Vite (`vite.config.ts`):
+
+```ts
+import { infernalVite } from '@infernal-ui/solid/vite';
+import solid from 'vite-plugin-solid';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  plugins: [solid(), infernalVite()],
+});
+```
+
+4. Add Panda CSS layers (for example in `src/index.css`):
+
+```css
+@layer reset, base, tokens, recipes, utilities;
+```
+
+5. Import app CSS in your entry (`src/main.tsx`):
+
+```ts
+import './index.css';
+```
+
+6. Ensure Panda codegen runs (for generated API/types):
+
+```json
+{
+  "scripts": {
+    "prepare": "panda codegen"
+  }
+}
+```
+
+Run `pnpm prepare` once after setup.
+
+7. Use components:
+
+```tsx
+import { InfernalContext, Button } from '@infernal-ui/solid';
+
+export const App = () => (
+  <InfernalContext>
+    <Button>Press me</Button>
+  </InfernalContext>
+);
+```
+
+### Optional: App-Specific Accent Theme
 
 ```ts
 import { createAccentTheme, defineInfernalConfig } from '@infernal-ui/solid/preset';
@@ -75,10 +128,4 @@ export default defineInfernalConfig({
     }),
   },
 });
-```
-
-Consumer app entry:
-
-```ts
-import '../styled-system/styles.css';
 ```
