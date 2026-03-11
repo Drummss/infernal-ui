@@ -12,6 +12,7 @@
   "include": [
     "index.ts",
     "preset.ts",
+    "vite.ts",
     "components/**/*.ts",
     "components/**/*.tsx",
     "theme/**/*.ts",

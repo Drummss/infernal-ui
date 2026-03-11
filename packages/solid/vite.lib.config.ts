@@ -13,6 +13,8 @@ const entry = (value: string) => path.resolve(dirname, value);
 const isExternal = (id: string) =>
   id === 'solid-js' ||
   id.startsWith('solid-js/') ||
+  id === 'vite' ||
+  id.startsWith('vite/') ||
   id === '@ark-ui/solid' ||
   id.startsWith('@ark-ui/solid/') ||
   id === '@infernal-ui/preset' ||
@@ -36,6 +38,7 @@ export default defineConfig({
         index: entry('index.ts'),
         components: entry('components/index.ts'),
         preset: entry('preset.ts'),
+        vite: entry('vite.ts'),
       },
       formats: ['es'],
     },
