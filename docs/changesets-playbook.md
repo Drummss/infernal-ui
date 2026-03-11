@@ -1,6 +1,6 @@
 # Changesets Playbook
 
-Last updated: March 10, 2026
+Last updated: March 11, 2026
 
 ## Purpose
 
@@ -20,8 +20,10 @@ These packages are configured as a fixed version group, so they release on the s
   - Verifies whether a changeset is needed and whether bump type is correct.
 - Release maintainer:
   - Enters/exits prerelease mode (`next`) when needed.
-- CI release workflow (Phase 4):
-  - Applies versions and publishes using pending changesets.
+- CI `version-pr` workflow:
+  - Creates/updates the Changesets version PR from merged changesets on `main`.
+- CI `publish` workflow:
+  - Publishes only when the version PR branch (`changeset-release/*`) is merged.
 
 ## When to Create a Changeset
 
@@ -56,13 +58,24 @@ Usually no changeset needed for:
 
 ## Release Commands
 
-Local commands available at repo root:
+Contributor command available at repo root:
 
 - `pnpm changeset`
+
+CI-owned release commands (do not run locally):
+
 - `pnpm version-packages`
 - `pnpm release`
 - `pnpm pre:enter` (enters prerelease mode with `next`)
 - `pnpm pre:exit` (exits prerelease mode)
+
+## CI Release Flow
+
+1. Contributor PR merges to `main` with a changeset file.
+2. `version-pr.yml` runs and creates/updates the Changesets version PR.
+3. No publish happens at this stage.
+4. Maintainer merges the version PR.
+5. `publish.yml` runs (only for merged `changeset-release/*` PRs), validates with `pnpm ci:check`, then runs `pnpm release`.
 
 ## Pre-Release Ownership
 

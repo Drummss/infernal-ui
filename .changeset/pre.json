@@ -1,0 +1,11 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "solid-kitchen-sink": "0.0.0",
+    "@infernal-ui/preset": "0.0.0",
+    "@infernal-ui/solid": "0.0.0",
+    "@infernal-ui/styled-system": "0.0.0"
+  },
+  "changesets": []
+}
