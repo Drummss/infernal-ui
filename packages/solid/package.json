@@ -8,9 +8,13 @@
     "access": "public"
   },
   "files": [
+    "bin",
     "dist",
     "types"
   ],
+  "bin": {
+    "infernal": "./bin/infernal-ui.mjs"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {

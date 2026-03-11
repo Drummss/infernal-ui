@@ -54,7 +54,28 @@ pnpm add @infernal-ui/solid @infernal-ui/styled-system
 pnpm add -D @pandacss/dev
 ```
 
-2. Create `panda.config.ts`:
+2. Run setup:
+
+```sh
+pnpm exec infernal init
+```
+
+This configures:
+- `panda.config.ts` via `defineInfernalConfig`
+- Vite plugin wiring via `infernalVite()` when Vite is detected
+- fallback PostCSS config for non-Vite projects
+- `src/index.css` with Panda layers + entry CSS import
+- `scripts.prepare` with `panda codegen`
+
+3. Start your app:
+
+```sh
+pnpm dev
+```
+
+Manual fallback (if you prefer explicit setup):
+
+1. Create `panda.config.ts`:
 
 ```ts
 import { defineInfernalConfig } from '@infernal-ui/solid/preset';
@@ -62,7 +83,7 @@ import { defineInfernalConfig } from '@infernal-ui/solid/preset';
 export default defineInfernalConfig({});
 ```
 
-3. Configure Vite (`vite.config.ts`):
+2. Configure Vite (`vite.config.ts`):
 
 ```ts
 import { infernalVite } from '@infernal-ui/solid/vite';
@@ -74,19 +95,19 @@ export default defineConfig({
 });
 ```
 
-4. Add Panda CSS layers (for example in `src/index.css`):
+3. Add Panda CSS layers (for example in `src/index.css`):
 
 ```css
 @layer reset, base, tokens, recipes, utilities;
 ```
 
-5. Import app CSS in your entry (`src/main.tsx`):
+4. Import app CSS in your entry (`src/main.tsx`):
 
 ```ts
 import './index.css';
 ```
 
-6. Ensure Panda codegen runs (for generated API/types):
+5. Ensure Panda codegen runs (for generated API/types):
 
 ```json
 {
