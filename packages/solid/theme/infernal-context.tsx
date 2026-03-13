@@ -5,19 +5,17 @@ import {
   createEffect,
   createMemo,
   createSignal,
+  type JSX,
   mergeProps,
   onCleanup,
   onMount,
   splitProps,
   useContext,
 } from 'solid-js';
-import { Box } from '../components/box';
-import type { ElementType, InfernalProps } from '../types/types';
 
 export type InfernalTheme = 'light' | 'dark' | 'system';
 export type InfernalResolvedTheme = 'light' | 'dark';
 export type InfernalAccentTheme = ThemeName | (string & {});
-export type InfernalThemeScope = 'document' | 'local';
 
 const getSystemTheme = (): InfernalResolvedTheme => {
   if (
@@ -53,33 +51,25 @@ export const useInfernalContext = () => {
   return context;
 };
 
-export type InfernalContextProps<C extends ElementType = 'div'> = InfernalProps<
-  C,
-  {
-    theme?: InfernalTheme;
-    defaultTheme?: InfernalTheme;
-    onThemeChange?: (theme: InfernalTheme) => void;
-    accent?: InfernalAccentTheme;
-    defaultAccent?: InfernalAccentTheme;
-    onAccentChange?: (theme?: InfernalAccentTheme) => void;
-    scope?: InfernalThemeScope;
-  }
->;
+export type InfernalContextProps = {
+  children?: JSX.Element;
+  theme?: InfernalTheme;
+  defaultTheme?: InfernalTheme;
+  onThemeChange?: (theme: InfernalTheme) => void;
+  accent?: InfernalAccentTheme;
+  defaultAccent?: InfernalAccentTheme;
+  onAccentChange?: (theme?: InfernalAccentTheme) => void;
+};
 
-export const InfernalContext = <C extends ElementType = 'div'>(
-  props: InfernalContextProps<C>,
-) => {
+export const InfernalContext = (props: InfernalContextProps) => {
   const propsWithDefaults = mergeProps(
     {
-      as: 'div',
       defaultTheme: 'system',
-      scope: 'document',
-    } satisfies Partial<InfernalContextProps<'div'>>,
+    } satisfies Partial<InfernalContextProps>,
     props,
-  ) as InfernalContextProps<'div'>;
+  );
 
-  const [local, rest] = splitProps(propsWithDefaults, [
-    'as',
+  const [local] = splitProps(propsWithDefaults, [
     'children',
     'theme',
     'defaultTheme',
@@ -87,7 +77,6 @@ export const InfernalContext = <C extends ElementType = 'div'>(
     'accent',
     'defaultAccent',
     'onAccentChange',
-    'scope',
   ]);
 
   const [internalTheme, setInternalTheme] = createSignal<InfernalTheme>(
@@ -146,9 +135,6 @@ export const InfernalContext = <C extends ElementType = 'div'>(
     setTheme(nextTheme);
   };
 
-  const mergedClass = () =>
-    [resolvedTheme(), rest.class].filter(Boolean).join(' ');
-
   const contextValue: InfernalThemeContextValue = {
     theme,
     resolvedTheme,
@@ -159,7 +145,7 @@ export const InfernalContext = <C extends ElementType = 'div'>(
   };
 
   createEffect(() => {
-    if (local.scope !== 'document' || typeof document === 'undefined') {
+    if (typeof document === 'undefined') {
       return;
     }
 
@@ -204,19 +190,7 @@ export const InfernalContext = <C extends ElementType = 'div'>(
 
   return (
     <InfernalThemeContext.Provider value={contextValue}>
-      {local.scope === 'local' ? (
-        <Box
-          as={local.as}
-          {...rest}
-          class={mergedClass()}
-          data-color-mode={resolvedTheme()}
-          data-panda-theme={accent()}
-        >
-          {local.children}
-        </Box>
-      ) : (
-        local.children
-      )}
+      {local.children}
     </InfernalThemeContext.Provider>
   );
 };

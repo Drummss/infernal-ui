@@ -69,6 +69,8 @@ export const App = () => (
 );
 ```
 
+`InfernalContext` is a provider for Infernal theme and accent state. It does not render a styled wrapper element.
+
 ## Key exports
 
 - `@infernal-ui/solid`: components plus `InfernalContext` and `useInfernalContext`

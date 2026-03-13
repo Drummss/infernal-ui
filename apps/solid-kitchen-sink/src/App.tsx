@@ -19,7 +19,6 @@ export const App = () => {
 
   return (
     <InfernalContext
-      as="div"
       theme={theme()}
       accent={accent() === 'base' ? undefined : accent()}
       onThemeChange={setTheme}
