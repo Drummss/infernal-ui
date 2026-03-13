@@ -1,7 +1,25 @@
 {
   "name": "@infernal-ui/preset",
   "version": "0.1.0-next.1",
+  "description": "Infernal UI Panda CSS preset, accent themes, and theme utilities.",
+  "keywords": [
+    "panda-css",
+    "design-system",
+    "theme",
+    "tokens",
+    "solid",
+    "infernal-ui"
+  ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Drummss/infernal-ui.git",
+    "directory": "packages/preset"
+  },
+  "homepage": "https://github.com/Drummss/infernal-ui/tree/main/packages/preset#readme",
+  "bugs": {
+    "url": "https://github.com/Drummss/infernal-ui/issues"
+  },
   "type": "module",
   "publishConfig": {
     "access": "public"

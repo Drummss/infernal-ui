@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "panda:generate": "panda codegen && panda cssgen --outfile styled-system/styles.css",
-    "dev:panda": "bash -lc 'trap \"kill 0\" EXIT; panda codegen --watch & panda cssgen --watch --outfile styled-system/styles.css & wait'",
-    "dev:solid-types": "bash -lc 'trap \"kill 0\" EXIT; pnpm --filter @infernal-ui/solid run build:js --watch & pnpm --filter @infernal-ui/solid run build:types:watch & wait'",
+    "dev:panda": "node ../../scripts/run-parallel.mjs \"panda codegen --watch\" \"panda cssgen --watch --outfile styled-system/styles.css\"",
+    "dev:solid": "node ../../scripts/run-parallel.mjs \"pnpm --filter @infernal-ui/solid build:js --watch\" \"pnpm --filter @infernal-ui/solid build:types:watch\"",
     "dev:vite": "vite",
-    "dev": "bash -lc 'trap \"kill 0\" EXIT; pnpm run dev:panda & pnpm run dev:solid-types & pnpm run dev:vite & wait'",
+    "dev": "node ../../scripts/run-parallel.mjs \"pnpm run dev:panda\" \"pnpm run dev:solid\" \"pnpm run dev:vite\"",
     "build": "pnpm run panda:generate && vite build",
     "preview": "vite preview",
     "check-types": "pnpm --filter @infernal-ui/solid build:types && tsc --noEmit"

@@ -1,7 +1,25 @@
 {
   "name": "@infernal-ui/styled-system",
   "version": "0.1.0-next.1",
+  "description": "Generated Panda styled-system package for Infernal UI recipes, tokens, themes, and helpers.",
+  "keywords": [
+    "panda-css",
+    "styled-system",
+    "design-system",
+    "solid",
+    "css-in-js",
+    "infernal-ui"
+  ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Drummss/infernal-ui.git",
+    "directory": "packages/styled-system"
+  },
+  "homepage": "https://github.com/Drummss/infernal-ui/tree/main/packages/styled-system#readme",
+  "bugs": {
+    "url": "https://github.com/Drummss/infernal-ui/issues"
+  },
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -53,8 +71,9 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "dev": "bash -lc 'trap \"kill 0\" EXIT; panda codegen --watch & panda cssgen --watch --outfile styles.css & wait'",
-    "build": "rm -rf css jsx patterns recipes themes tokens types helpers.mjs styles.css && panda codegen && panda cssgen --outfile styles.css",
+    "clean": "node ../../scripts/clean-paths.mjs css jsx patterns recipes themes tokens types helpers.mjs styles.css",
+    "dev": "node ../../scripts/run-parallel.mjs \"panda codegen --watch\" \"panda cssgen --watch --outfile styles.css\"",
+    "build": "pnpm run clean && panda codegen && panda cssgen --outfile styles.css",
     "check-types": "tsc -p tsconfig.json --noEmit"
   },
   "peerDependencies": {
