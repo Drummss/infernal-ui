@@ -1,6 +1,6 @@
 {
   "name": "@infernal-ui/solid",
-  "version": "0.1.0-next.1",
+  "version": "0.1.0-next.2",
   "description": "Infernal UI components, theme context, Panda setup helpers, and CLI for SolidJS.",
   "keywords": [
     "solid",
