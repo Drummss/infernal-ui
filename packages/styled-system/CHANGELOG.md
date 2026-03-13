@@ -1,5 +1,11 @@
 # @infernal-ui/styled-system
 
+## 0.1.0-next.2
+
+### Patch Changes
+
+- cad52f5: Improve startup scripts and add README.md
+
 ## 0.1.0-next.1
 
 ### Minor Changes
