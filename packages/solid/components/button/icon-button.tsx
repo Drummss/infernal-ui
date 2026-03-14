@@ -1,6 +1,8 @@
+import type { button } from '@infernal-ui/styled-system/recipes';
+import type { RecipeVariantProps } from '@infernal-ui/styled-system/types';
 import { type JSX, mergeProps, splitProps } from 'solid-js';
-import type { ElementType } from '../../types/types';
-import { Button, type ButtonProps } from './button';
+import type { ElementType, InfernalProps } from '../../types/types';
+import { Button } from './button';
 
 const ICON_BUTTON_SIZE = {
   sm: '8',
@@ -10,21 +12,16 @@ const ICON_BUTTON_SIZE = {
 
 type ButtonSize = keyof typeof ICON_BUTTON_SIZE;
 
-export type IconButtonProps<C extends ElementType = 'button'> = Omit<
-  ButtonProps<C>,
-  'children' | 'iconLeft' | 'iconRight'
-> & {
-  icon: JSX.Element;
-  children?: never;
-  'aria-label': string;
-};
+export type IconButtonProps<C extends ElementType = 'button'> = InfernalProps<
+  C,
+  RecipeVariantProps<typeof button> & {
+    icon: JSX.Element;
+    children?: never;
+    'aria-label': string;
+  }
+>;
 
-type IconButtonComponent = typeof Button &
-  (<C extends ElementType = 'button'>(
-    props: IconButtonProps<C>,
-  ) => JSX.Element);
-
-const IconButtonImpl = <C extends ElementType = 'button'>(
+export const IconButton = <C extends ElementType = 'button'>(
   props: IconButtonProps<C>,
 ) => {
   const propsWithDefaults = mergeProps(
@@ -54,5 +51,3 @@ const IconButtonImpl = <C extends ElementType = 'button'>(
     </Button>
   );
 };
-
-export const IconButton = IconButtonImpl as IconButtonComponent;

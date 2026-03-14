@@ -1,3 +1,4 @@
+import type { JsxStyleProps } from '@infernal-ui/styled-system/types';
 import type { Component, ComponentProps, JSX } from 'solid-js';
 
 // biome-ignore lint/complexity/noBannedTypes: This polymorphic utility intentionally uses {} as "no extra props" defaults.
@@ -18,10 +19,10 @@ export type InfernalProps<
   AdditionalProps = {},
 > = OverrideProps<
   ComponentProps<C>,
-  AdditionalProps & {
+  {
     as?: C;
-    class?: string;
-    style?: JSX.CSSProperties | string;
+    unstyled?: boolean;
     children?: JSX.Element;
-  }
+  } & JsxStyleProps &
+    AdditionalProps
 >;

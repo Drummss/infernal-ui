@@ -1,33 +1,20 @@
 import { styled } from '@infernal-ui/styled-system/jsx';
 import { button } from '@infernal-ui/styled-system/recipes';
-import type {
-  JsxStyleProps,
-  RecipeVariantProps,
-} from '@infernal-ui/styled-system/types';
+import type { RecipeVariantProps } from '@infernal-ui/styled-system/types';
 import { type JSX, splitProps } from 'solid-js';
 import type { ElementType, InfernalProps } from '../../types/types';
 
-type ButtonStyleProps = JsxStyleProps &
-  RecipeVariantProps<typeof button> & {
-    unstyled?: boolean;
-  };
-
-type ButtonOwnProps = {
-  iconLeft?: JSX.Element;
-  iconRight?: JSX.Element;
-};
-
 export type ButtonProps<C extends ElementType = 'button'> = InfernalProps<
   C,
-  ButtonStyleProps & ButtonOwnProps
+  RecipeVariantProps<typeof button> & {
+    iconLeft?: JSX.Element;
+    iconRight?: JSX.Element;
+  }
 >;
 
 const BaseButton = styled('button', button);
 
-type ButtonComponent = typeof BaseButton &
-  (<C extends ElementType = 'button'>(props: ButtonProps<C>) => JSX.Element);
-
-const ButtonImpl = <C extends ElementType = 'button'>(
+export const Button = <C extends ElementType = 'button'>(
   props: ButtonProps<C>,
 ) => {
   const [local, rest] = splitProps(props as ButtonProps<'button'>, [
@@ -58,5 +45,3 @@ const ButtonImpl = <C extends ElementType = 'button'>(
     </BaseButton>
   );
 };
-
-export const Button = ButtonImpl as ButtonComponent;

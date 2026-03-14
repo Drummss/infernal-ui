@@ -1,8 +1,8 @@
 import { heading } from '@infernal-ui/styled-system/recipes';
 import type { RecipeVariantProps } from '@infernal-ui/styled-system/types';
-import { mergeProps, splitProps } from 'solid-js';
+import { splitProps } from 'solid-js';
 import type { ElementType, InfernalProps } from '../../types/types';
-import { Box } from '../box';
+import { Box, type BoxProps } from '../box';
 
 export type HeadingRecipeVariants = RecipeVariantProps<typeof heading>;
 
@@ -19,16 +19,7 @@ export type HeadingProps<C extends ElementType = 'h2'> = InfernalProps<
 export const Heading = <C extends ElementType = 'h2'>(
   props: HeadingProps<C>,
 ) => {
-  const defaultProps: HeadingProps<'h2'> = {
-    as: 'h2',
-    level: '2',
-  };
-
-  const propsWithDefaults = mergeProps(
-    defaultProps,
-    props,
-  ) as HeadingProps<'h2'>;
-  const [local, rest] = splitProps(propsWithDefaults, [
+  const [local, rest] = splitProps(props as HeadingProps<'h2'>, [
     'as',
     'level',
     'variants',
@@ -36,7 +27,7 @@ export const Heading = <C extends ElementType = 'h2'>(
   ]);
 
   const asProp = () =>
-    local.level ? (`h${local.level}` as ElementType) : local.as;
+    local.level ? (`h${local.level}` as ElementType) : (local.as ?? 'h2');
 
   const resolvedLevel = (): HeadingRecipeLevel =>
     local.variants?.level ?? local.level ?? '2';
@@ -46,15 +37,12 @@ export const Heading = <C extends ElementType = 'h2'>(
     (resolvedLevel() === '1' ? 'underline' : undefined);
 
   const className = () =>
-    [
-      heading({ level: resolvedLevel(), style: resolvedStyle() }),
-      rest.class,
-    ]
+    [heading({ level: resolvedLevel(), style: resolvedStyle() }), rest.class]
       .filter(Boolean)
       .join(' ');
 
   return (
-    <Box as={asProp()} {...rest} class={className()}>
+    <Box as={asProp()} class={className()} {...rest}>
       {local.children}
     </Box>
   );

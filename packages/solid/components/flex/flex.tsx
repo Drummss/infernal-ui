@@ -3,29 +3,26 @@ import type { JSX } from 'solid-js';
 import type { ElementType } from '../../types/types';
 import { Box, type BoxProps } from '../box';
 
-const BaseFlex = styled(Box, {
+export type FlexProps<C extends ElementType = 'div'> = BoxProps<C>;
+
+type FlexComponent = <C extends ElementType = 'div'>(
+  props: FlexProps<C>,
+) => JSX.Element;
+
+export const Flex = styled(Box, {
   base: {
     display: 'flex',
   },
-});
+}) as FlexComponent;
 
-type FlexComponent = typeof BaseFlex &
-  (<C extends ElementType = 'div'>(props: BoxProps<C>) => JSX.Element);
-
-export const Flex = BaseFlex as FlexComponent;
-
-const BaseHStack = styled(Flex, {
+export const HStack = styled(Flex, {
   base: {
     flexDirection: 'row',
   },
-});
+}) as FlexComponent;
 
-export const HStack = BaseHStack as FlexComponent;
-
-const BaseVStack = styled(Flex, {
+export const VStack = styled(Flex, {
   base: {
     flexDirection: 'column',
   },
-});
-
-export const VStack = BaseVStack as FlexComponent;
+}) as FlexComponent;
