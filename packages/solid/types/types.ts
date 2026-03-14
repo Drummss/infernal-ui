@@ -26,3 +26,21 @@ export type InfernalProps<
   } & JsxStyleProps &
     AdditionalProps
 >;
+
+type InfernalArkManagedKeys<OmittedKeys extends PropertyKey = never> =
+  | 'as'
+  | 'children'
+  | OmittedKeys;
+
+type FilterArkProps<
+  ArkProps,
+  OmittedKeys extends PropertyKey = never,
+> = Omit<ArkProps, InfernalArkManagedKeys<OmittedKeys>>;
+
+export type InfernalArkProps<
+  ArkProps,
+  C extends ElementType = 'div',
+  // biome-ignore lint/complexity/noBannedTypes: Empty default keeps additional prop extension ergonomic.
+  AdditionalProps = {},
+  OmittedKeys extends PropertyKey = never,
+> = InfernalProps<C, FilterArkProps<ArkProps, OmittedKeys> & AdditionalProps>;

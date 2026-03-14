@@ -60,3 +60,32 @@ export const Simple = meta.story({
     await expect(checkbox).toHaveAttribute('type', 'checkbox');
   },
 });
+
+export const SimpleStyledSlots = meta.story({
+  render: () => (
+    <SimpleCheckbox
+      label="Enable SMS alerts"
+      name="sms-alerts-styled"
+      slotProps={{
+        control: {
+          borderColor: 'blue.500',
+          bg: 'blue.50',
+        },
+        indicator: {
+          color: 'blue.700',
+        },
+        label: {
+          color: 'blue.800',
+          fontWeight: 'semibold',
+        },
+      }}
+    />
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const checkbox = canvas.getByRole('checkbox', {
+      name: /enable sms alerts/i,
+    });
+    await expect(checkbox).toHaveAttribute('type', 'checkbox');
+  },
+});

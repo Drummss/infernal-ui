@@ -2,8 +2,20 @@ import type { SelectRootProps as ArkSelectRootProps } from '@ark-ui/solid/select
 import { createListCollection } from '@ark-ui/solid/select';
 import { createMemo, For, type JSX, Show, splitProps } from 'solid-js';
 import { Portal } from 'solid-js/web';
-import { Select } from './select';
+import type { ElementType, InfernalArkProps } from '../../types/types';
 import type { SelectRecipeVariants } from './select';
+import {
+  Select,
+  type SelectContentProps,
+  type SelectIndicatorProps,
+  type SelectItemIndicatorProps,
+  type SelectItemProps,
+  type SelectItemTextProps,
+  type SelectLabelProps,
+  type SelectListProps,
+  type SelectTriggerProps,
+  type SelectValueTextProps,
+} from './select';
 
 export type SimpleSelectItem = {
   label: string;
@@ -11,17 +23,28 @@ export type SimpleSelectItem = {
   disabled?: boolean;
 };
 
-type ArkRootProps = ArkSelectRootProps<SimpleSelectItem>;
-
-export type SimpleSelectProps = Omit<
-  ArkRootProps,
-  | 'children'
+type SimpleSelectManagedKeys =
   | 'collection'
   | 'multiple'
   | 'value'
   | 'defaultValue'
-  | 'onValueChange'
-> &
+  | 'onValueChange';
+
+export type SimpleSelectSlotProps = {
+  label?: SelectLabelProps;
+  trigger?: SelectTriggerProps;
+  valueText?: SelectValueTextProps;
+  indicator?: SelectIndicatorProps;
+  content?: SelectContentProps;
+  list?: SelectListProps;
+  item?: SelectItemProps;
+  itemText?: SelectItemTextProps;
+  itemIndicator?: SelectItemIndicatorProps;
+};
+
+export type SimpleSelectProps<C extends ElementType = 'div'> = InfernalArkProps<
+  ArkSelectRootProps<SimpleSelectItem>,
+  C,
   SelectRecipeVariants & {
     items: ReadonlyArray<SimpleSelectItem>;
     label?: JSX.Element;
@@ -31,10 +54,16 @@ export type SimpleSelectProps = Omit<
     onValueChange?: (value: string) => void;
     indicator?: JSX.Element;
     itemIndicator?: JSX.Element;
-  };
+    slotProps?: SimpleSelectSlotProps;
+    children?: never;
+  },
+  SimpleSelectManagedKeys
+>;
 
-export const SimpleSelect = (props: SimpleSelectProps) => {
-  const [local, rootProps] = splitProps(props, [
+export const SimpleSelect = <C extends ElementType = 'div'>(
+  props: SimpleSelectProps<C>,
+) => {
+  const [local, rest] = splitProps(props as SimpleSelectProps<'div'>, [
     'items',
     'label',
     'placeholder',
@@ -43,6 +72,7 @@ export const SimpleSelect = (props: SimpleSelectProps) => {
     'onValueChange',
     'indicator',
     'itemIndicator',
+    'slotProps',
     'positioning',
     'size',
   ]);
@@ -57,7 +87,6 @@ export const SimpleSelect = (props: SimpleSelectProps) => {
 
   return (
     <Select.Root
-      {...rootProps}
       size={local.size}
       collection={collection()}
       positioning={local.positioning ?? { sameWidth: true }}
@@ -66,28 +95,38 @@ export const SimpleSelect = (props: SimpleSelectProps) => {
         local.defaultValue === undefined ? undefined : [local.defaultValue]
       }
       onValueChange={(details) => local.onValueChange?.(details.value[0] ?? '')}
+      {...rest}
     >
       <Show when={local.label}>
-        <Select.Label>{local.label}</Select.Label>
+        <Select.Label {...local.slotProps?.label}>{local.label}</Select.Label>
       </Show>
 
       <Select.HiddenSelect />
       <Select.Control>
-        <Select.Trigger>
-          <Select.ValueText placeholder={local.placeholder} />
-          <Select.Indicator>{local.indicator}</Select.Indicator>
+        <Select.Trigger {...local.slotProps?.trigger}>
+          <Select.ValueText
+            placeholder={local.placeholder}
+            {...local.slotProps?.valueText}
+          />
+          <Select.Indicator {...local.slotProps?.indicator}>
+            {local.indicator}
+          </Select.Indicator>
         </Select.Trigger>
       </Select.Control>
 
       <Portal>
         <Select.Positioner>
-          <Select.Content>
-            <Select.List>
+          <Select.Content {...local.slotProps?.content}>
+            <Select.List {...local.slotProps?.list}>
               <For each={collection().items}>
                 {(item) => (
-                  <Select.Item item={item}>
-                    <Select.ItemText>{item.label}</Select.ItemText>
-                    <Select.ItemIndicator>{local.itemIndicator}</Select.ItemIndicator>
+                  <Select.Item {...local.slotProps?.item} item={item}>
+                    <Select.ItemText {...local.slotProps?.itemText}>
+                      {item.label}
+                    </Select.ItemText>
+                    <Select.ItemIndicator {...local.slotProps?.itemIndicator}>
+                      {local.itemIndicator}
+                    </Select.ItemIndicator>
                   </Select.Item>
                 )}
               </For>

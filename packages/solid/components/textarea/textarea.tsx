@@ -1,10 +1,21 @@
-import { Field as ArkField } from '@ark-ui/solid/field';
+import {
+  Field as ArkField,
+  type FieldTextareaProps as ArkFieldTextareaProps,
+} from '@ark-ui/solid/field';
 import { styled } from '@infernal-ui/styled-system/jsx';
 import { textarea } from '@infernal-ui/styled-system/recipes';
 import type { RecipeVariantProps } from '@infernal-ui/styled-system/types';
+import type { JSX } from 'solid-js';
+import type { ElementType, InfernalArkProps } from '../../types/types';
 
 export type TextareaRecipeVariants = RecipeVariantProps<typeof textarea>;
 export type TextareaVariants = TextareaRecipeVariants;
+export type TextareaProps<C extends ElementType = 'textarea'> =
+  InfernalArkProps<ArkFieldTextareaProps, C, TextareaRecipeVariants>;
+
+type TextareaComponent = <C extends ElementType = 'textarea'>(
+  props: TextareaProps<C>,
+) => JSX.Element;
 
 // Ark Field.Textarea is non-strict and works both inside and outside Field.Root.
-export const Textarea = styled(ArkField.Textarea, textarea);
+export const Textarea = styled(ArkField.Textarea, textarea) as TextareaComponent;

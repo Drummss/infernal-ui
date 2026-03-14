@@ -136,3 +136,39 @@ export const Simple = meta.story({
     await expect(trigger.tagName).toBe('BUTTON');
   },
 });
+
+export const SimpleStyledSlots = meta.story({
+  render: () => (
+    <div style={{ width: '320px' }}>
+      <SimpleSelect
+        label="Country code"
+        items={countryCodeItems}
+        name="country-code-styled"
+        placeholder="Select country code"
+        slotProps={{
+          label: {
+            color: 'blue.700',
+            fontWeight: 'semibold',
+            mb: '2',
+          },
+          trigger: {
+            borderColor: 'blue.500',
+            bg: 'blue.50',
+          },
+          content: {
+            borderColor: 'blue.500',
+            boxShadow: 'lg',
+          },
+          itemText: {
+            color: 'blue.800',
+          },
+        }}
+      />
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole('combobox', { name: /country code/i });
+    await expect(trigger.tagName).toBe('BUTTON');
+  },
+});
