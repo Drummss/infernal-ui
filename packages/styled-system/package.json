@@ -1,6 +1,6 @@
 {
   "name": "@infernal-ui/styled-system",
-  "version": "0.1.0-next.2",
+  "version": "0.1.0",
   "description": "Generated Panda styled-system package for Infernal UI recipes, tokens, themes, and helpers.",
   "keywords": [
     "panda-css",
