@@ -21,6 +21,7 @@ export {
   checkboxRecipe,
   fieldRecipe,
   fieldsetRecipe,
+  radioGroupRecipe,
   selectRecipe,
   slotRecipes,
 } from './slot-recipes';

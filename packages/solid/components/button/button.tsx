@@ -2,7 +2,7 @@ import { styled } from '@infernal-ui/styled-system/jsx';
 import { button } from '@infernal-ui/styled-system/recipes';
 import type { RecipeVariantProps } from '@infernal-ui/styled-system/types';
 import { type JSX, splitProps } from 'solid-js';
-import type { ElementType, InfernalProps } from '../../types/types';
+import type { ElementType, InfernalProps } from '../../types';
 
 export type ButtonProps<C extends ElementType = 'button'> = InfernalProps<
   C,

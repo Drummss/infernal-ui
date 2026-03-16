@@ -11,6 +11,5 @@
     "source.action.useSortedKeys.biome": "explicit",
     "source.fixAll.biome": "explicit"
   },
-  "typescript.preferences.importModuleSpecifierEnding": "minimal",
-  "javascript.preferences.importModuleSpecifierEnding": "minimal"
+  "js/ts.preferences.importModuleSpecifierEnding": "minimal"
 }

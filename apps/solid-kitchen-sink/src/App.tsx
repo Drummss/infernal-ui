@@ -10,6 +10,7 @@ import { BoxTestsPage } from './pages/BoxTests';
 import { ButtonTestsPage } from './pages/ButtonTests';
 import { ColorTokensPage } from './pages/ColorTokens';
 import { IndexPage } from './pages/Index';
+import { RadioGroupTestsPage } from './pages/RadioGroupTests';
 
 export const App = () => {
   const [theme, setTheme] = createSignal<InfernalTheme>('system');
@@ -29,6 +30,7 @@ export const App = () => {
         <Route component={ColorTokensPage} path="/color-tokens" />
         <Route component={BoxTestsPage} path="/box-tests" />
         <Route component={ButtonTestsPage} path="/button-tests" />
+        <Route component={RadioGroupTestsPage} path="/radio-group-tests" />
       </Router>
     </InfernalContext>
   );

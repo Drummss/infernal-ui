@@ -33,16 +33,22 @@ pnpm format
 Useful targeted commands:
 
 ```sh
+pnpm dev --filter solid-kitchen-sink
 pnpm --filter @infernal-ui/solid storybook
 pnpm --filter @infernal-ui/solid build-storybook
-pnpm --filter solid-kitchen-sink dev
 ```
 
 `pnpm dev` runs the workspace watchers through Turborepo:
 
+- `@infernal-ui/preset`: tsup watch for `dist/index.js` and `dist/index.d.ts`
 - `@infernal-ui/styled-system`: Panda codegen and cssgen in watch mode
 - `@infernal-ui/solid`: Panda ship watch for `dist/panda.buildinfo.json`
 - `solid-kitchen-sink`: Panda codegen, cssgen, and the Vite dev server
+
+When you want a narrower local loop, prefer Turbo-filtered root commands such as
+`pnpm dev --filter solid-kitchen-sink`. That keeps dependency watchers like
+`@infernal-ui/preset` running, so recipe edits in `packages/preset/src/**`
+rebuild live without a manual restart.
 
 ## Links
 

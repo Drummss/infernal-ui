@@ -66,6 +66,11 @@ const navItems = [
     label: 'Button Tests',
     isActive: (path: string) => path.startsWith('/button-tests'),
   },
+  {
+    href: '/radio-group-tests',
+    label: 'Radio Group Tests',
+    isActive: (path: string) => path.startsWith('/radio-group-tests'),
+  },
 ] as const;
 
 export const IndexLayout = (props: ParentProps) => {

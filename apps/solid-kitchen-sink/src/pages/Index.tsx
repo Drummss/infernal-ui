@@ -1,4 +1,4 @@
-import { Box, Button, SimpleCheckbox } from '@infernal-ui/solid';
+import { Box, Button, SimpleCheckbox, Text } from '@infernal-ui/solid';
 import { createSignal, type ParentProps } from 'solid-js';
 
 type KitchenSinkPanelProps = ParentProps<{
@@ -41,9 +41,9 @@ export const IndexPage = () => {
           Overview
         </Box>
 
-        <Box as="p" color="typography.color.muted">
+        <Text color="typography.color.muted">
           Kitchen sink for playing around with InfernalUI stuffs.
-        </Box>
+        </Text>
       </Box>
 
       <KitchenSinkPanel title="Polymorphism + Events">
@@ -62,10 +62,10 @@ export const IndexPage = () => {
       </KitchenSinkPanel>
 
       <KitchenSinkPanel title="Where To Test">
-        <Box as="p" color="typography.color.secondary">
+        <Text color="typography.color.secondary">
           Use Box Tests for polymorphic Box behavior and Button Tests for button
           variants and events.
-        </Box>
+        </Text>
       </KitchenSinkPanel>
 
       <KitchenSinkPanel title="Status">

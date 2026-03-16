@@ -36,7 +36,7 @@ const withInfernalTheme = createJSXDecorator((Story, context) => {
   });
 
   return (
-    <InfernalContext scope="document" theme={colorMode()} accent={accent()}>
+    <InfernalContext theme={colorMode()} accent={accent()}>
       <Story />
     </InfernalContext>
   );

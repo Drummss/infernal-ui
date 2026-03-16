@@ -1,4 +1,4 @@
-import { Box } from '@infernal-ui/solid';
+import { Box, Text } from '@infernal-ui/solid';
 import { token } from '@infernal-ui/styled-system/tokens';
 
 const pandaScaleFamilies = [
@@ -203,10 +203,10 @@ export const ColorTokensPage = () => {
           Color Tokens
         </Box>
 
-        <Box as="p" mb="8" color="typography.color.muted">
+        <Text mb="8" color="typography.color.muted">
           Swatches for Panda color scales and Infernal semantic tokens. Edit
           tokens and refresh to validate overrides visually.
-        </Box>
+        </Text>
 
         <Box as="h2" fontSize="xl" mb="4" color="typography.color.heading">
           Semantic Color Tokens
