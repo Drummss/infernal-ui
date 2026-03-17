@@ -42,8 +42,8 @@ pnpm --filter @infernal-ui/solid build-storybook
 
 - `@infernal-ui/preset`: tsup watch for `dist/index.js` and `dist/index.d.ts`
 - `@infernal-ui/styled-system`: Panda codegen and cssgen in watch mode
-- `@infernal-ui/solid`: Panda ship watch for `dist/panda.buildinfo.json`
-- `solid-kitchen-sink`: Panda codegen, cssgen, and the Vite dev server
+- `@infernal-ui/solid`: JS build watch, declaration watch, and Panda ship watch for consumer-facing outputs
+- `solid-kitchen-sink`: app-local Panda codegen/cssgen and the Vite dev server
 
 When you want a narrower local loop, prefer Turbo-filtered root commands such as
 `pnpm dev --filter solid-kitchen-sink`. That keeps dependency watchers like

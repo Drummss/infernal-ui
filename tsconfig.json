@@ -1,0 +1,7 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/solid/tsconfig.build.json" },
+    { "path": "./apps/solid-kitchen-sink/tsconfig.json" }
+  ]
+}

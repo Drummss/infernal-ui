@@ -5,11 +5,14 @@
     "moduleResolution": "bundler",
     "allowJs": false,
     "noEmit": true,
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.cache/tsconfig.tsbuildinfo",
     "strict": true,
     "skipLibCheck": true,
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "types": ["vite/client"]
   },
-  "include": ["src", "vite.config.ts", "panda.config.ts"]
+  "include": ["src", "vite.config.ts", "panda.config.ts"],
+  "references": [{ "path": "../../packages/solid/tsconfig.build.json" }]
 }

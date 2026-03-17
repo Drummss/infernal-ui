@@ -56,10 +56,11 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "dev": "pnpm run build:extract:watch",
+    "dev": "node ../../scripts/run-parallel.mjs \"pnpm run build:js:watch\" \"pnpm run build:types:watch\" \"pnpm run build:extract:watch\"",
     "build": "pnpm run build:js && pnpm run build:types && pnpm run build:extract",
     "build:js": "vite build -c vite.lib.config.ts",
-    "build:types": "tsc -p tsconfig.build.json --incremental false",
+    "build:js:watch": "vite build -c vite.lib.config.ts --watch",
+    "build:types": "tsc -p tsconfig.build.json",
     "build:types:watch": "tsc -p tsconfig.build.json --watch",
     "build:extract": "panda ship \"components/**/*.{ts,tsx}\" --outfile dist/panda.buildinfo.json",
     "build:extract:watch": "panda ship \"components/**/*.{ts,tsx}\" --watch --outfile dist/panda.buildinfo.json",

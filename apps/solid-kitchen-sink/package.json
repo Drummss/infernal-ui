@@ -6,9 +6,8 @@
   "scripts": {
     "panda:generate": "panda codegen && panda cssgen --outfile styled-system/styles.css",
     "dev:panda": "node ../../scripts/run-parallel.mjs \"panda codegen --watch\" \"panda cssgen --watch --outfile styled-system/styles.css\"",
-    "dev:solid": "node ../../scripts/run-parallel.mjs \"pnpm --filter @infernal-ui/solid build:js --watch\" \"pnpm --filter @infernal-ui/solid build:types:watch\"",
     "dev:vite": "vite",
-    "dev": "node ../../scripts/run-parallel.mjs \"pnpm run dev:panda\" \"pnpm run dev:solid\" \"pnpm run dev:vite\"",
+    "dev": "node ../../scripts/run-parallel.mjs \"pnpm run dev:panda\" \"pnpm run dev:vite\"",
     "build": "pnpm run panda:generate && vite build",
     "preview": "vite preview",
     "check-types": "pnpm --filter @infernal-ui/solid build:types && tsc --noEmit"
@@ -22,7 +21,7 @@
   "devDependencies": {
     "@pandacss/dev": "^1.8.2",
     "typescript": "^5.9.3",
-    "vite": "^7.3.1",
-    "vite-plugin-solid": "^2.11.10"
+    "vite": "^8.0.0",
+    "vite-plugin-solid": "^2.11.11"
   }
 }

@@ -28,7 +28,7 @@
   },
   "pnpm": {
     "overrides": {
-      "vitefu": "^1.1.1"
+      "vitefu": "^1.1.2"
     }
   }
 }
