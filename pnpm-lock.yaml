@@ -24,6 +24,40 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
 
+  apps/docs:
+    dependencies:
+      '@infernal-ui/solid':
+        specifier: workspace:*
+        version: link:../../packages/solid
+      '@infernal-ui/styled-system':
+        specifier: workspace:*
+        version: link:../../packages/styled-system
+      '@solidjs/router':
+        specifier: ^0.16.1
+        version: 0.16.1(solid-js@1.9.11)
+      solid-icons:
+        specifier: ^1.2.0
+        version: 1.2.0(solid-js@1.9.11)
+      solid-js:
+        specifier: ^1.9.5
+        version: 1.9.11
+    devDependencies:
+      '@pandacss/dev':
+        specifier: ^1.8.2
+        version: 1.8.2(typescript@5.9.3)
+      solid-devtools:
+        specifier: ^0.34.3
+        version: 0.34.5(solid-js@1.9.11)(vite@8.0.1(@types/node@22.15.31)(esbuild@0.27.3))
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vite:
+        specifier: ^8.0.1
+        version: 8.0.1(@types/node@22.15.31)(esbuild@0.27.3)
+      vite-plugin-solid:
+        specifier: ^2.11.8
+        version: 2.11.11(@testing-library/jest-dom@6.6.3)(solid-js@1.9.11)(vite@8.0.1(@types/node@22.15.31)(esbuild@0.27.3))
+
   apps/solid-kitchen-sink:
     dependencies:
       '@infernal-ui/solid':
