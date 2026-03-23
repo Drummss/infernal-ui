@@ -45,7 +45,7 @@ export const buttonRecipe = defineRecipe({
         bg: 'palette.primary.main',
         color: 'palette.primary.contrast',
         _hover: {
-          bg: 'palette.background.surface',
+          bg: { base: 'blackAlpha.50', _dark: 'whiteAlpha.50' },
           color: 'palette.text',
           outlineWidth: '2px',
           outlineColor: 'palette.primary.main',
@@ -56,8 +56,8 @@ export const buttonRecipe = defineRecipe({
         bg: 'transparent',
         color: 'typography.color.body',
         borderColor: 'palette.primary.main',
-        _hover: { bg: { base: 'blackAlpha.100', _dark: 'whiteAlpha.100' } },
-        _active: { bg: { base: 'blackAlpha.50', _dark: 'whiteAlpha.50' } },
+        _hover: { bg: { base: 'blackAlpha.50', _dark: 'whiteAlpha.50' } },
+        _active: { bg: { base: 'blackAlpha.100', _dark: 'whiteAlpha.100' } },
       },
       ghost: {
         bg: 'transparent',
