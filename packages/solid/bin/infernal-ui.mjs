@@ -28,6 +28,9 @@ const ENTRY_FILE_CANDIDATES = [
 ];
 
 const PANDA_LAYER_LINE = '@layer reset, base, tokens, recipes, utilities;';
+const APP_INDEX_CSS_IMPORT = "import './index.css';";
+const STYLED_SYSTEM_CSS_IMPORT =
+  "import '@infernal-ui/styled-system/styles.css';";
 
 const usage = () => {
   console.log(`infernal
@@ -109,7 +112,19 @@ const readText = async (filePath) => {
 
 const hasImportFor = (sourceText, importPath) =>
   sourceText.includes(`from '${importPath}'`) ||
-  sourceText.includes(`from "${importPath}"`);
+  sourceText.includes(`from "${importPath}"`) ||
+  sourceText.includes(`import '${importPath}'`) ||
+  sourceText.includes(`import "${importPath}"`);
+
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const findImportLineIndex = (lines, importPath) => {
+  const pattern = new RegExp(
+    `^\\s*import\\s+(?:.+?\\s+from\\s+)?['"]${escapeRegExp(importPath)}['"];?\\s*$`,
+  );
+
+  return lines.findIndex((line) => pattern.test(line));
+};
 
 const insertImport = (sourceText, importLine) => {
   const lines = sourceText.split('\n');
@@ -127,6 +142,37 @@ const insertImport = (sourceText, importLine) => {
   }
 
   return `${importLine}\n${sourceText}`;
+};
+
+const insertImportRelativeTo = (
+  sourceText,
+  importLine,
+  {
+    beforeImportPath,
+    afterImportPath,
+  } = {},
+) => {
+  const lines = sourceText.split('\n');
+
+  if (beforeImportPath) {
+    const index = findImportLineIndex(lines, beforeImportPath);
+
+    if (index >= 0) {
+      lines.splice(index, 0, importLine);
+      return lines.join('\n');
+    }
+  }
+
+  if (afterImportPath) {
+    const index = findImportLineIndex(lines, afterImportPath);
+
+    if (index >= 0) {
+      lines.splice(index + 1, 0, importLine);
+      return lines.join('\n');
+    }
+  }
+
+  return insertImport(sourceText, importLine);
 };
 
 const patchViteConfig = (sourceText) => {
@@ -255,7 +301,7 @@ const ensureCssEntryImport = async ({
 
   if (!candidate) {
     warnings.push(
-      'Could not find an entry file to patch (looked for src/main.tsx, src/main.ts, src/index.tsx, src/index.ts, src/entry-client.tsx). Import "./index.css" in your app entry manually.',
+      'Could not find an entry file to patch (looked for src/main.tsx, src/main.ts, src/index.tsx, src/index.ts, src/entry-client.tsx). Import "./index.css" and "@infernal-ui/styled-system/styles.css" in your app entry manually.',
     );
     return;
   }
@@ -265,16 +311,37 @@ const ensureCssEntryImport = async ({
     return;
   }
 
-  if (existing.includes('index.css')) {
+  const hasIndexCssImport = hasImportFor(existing, './index.css');
+  const hasStyledSystemCssImport = hasImportFor(
+    existing,
+    '@infernal-ui/styled-system/styles.css',
+  );
+
+  if (hasIndexCssImport && hasStyledSystemCssImport) {
     return;
   }
 
-  const next = `import './index.css';\n${existing}`;
+  let next = existing;
+  const addedImports = [];
+
+  if (!hasIndexCssImport) {
+    next = insertImportRelativeTo(next, APP_INDEX_CSS_IMPORT, {
+      beforeImportPath: '@infernal-ui/styled-system/styles.css',
+    });
+    addedImports.push('./index.css');
+  }
+
+  if (!hasStyledSystemCssImport) {
+    next = insertImportRelativeTo(next, STYLED_SYSTEM_CSS_IMPORT, {
+      afterImportPath: './index.css',
+    });
+    addedImports.push('@infernal-ui/styled-system/styles.css');
+  }
 
   operations.push({
     type: 'update',
     filePath: candidate,
-    summary: 'import ./index.css in entry file',
+    summary: `import ${addedImports.join(' and ')} in entry file`,
   });
 
   if (!dryRun) {

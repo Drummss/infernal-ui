@@ -55,7 +55,14 @@ Add Panda layers to your app stylesheet:
 @layer reset, base, tokens, recipes, utilities;
 ```
 
-Import that stylesheet from your app entrypoint and ensure `panda codegen` runs before builds.
+Import your app stylesheet and the published Infernal UI stylesheet from the app entrypoint:
+
+```ts
+import './index.css';
+import '@infernal-ui/styled-system/styles.css';
+```
+
+`infernalVite()` wires Panda/PostCSS so app-authored styles and utility props compile correctly. `@infernal-ui/styled-system/styles.css` provides Infernal UI's generated recipe, base, token, and theme CSS. Ensure `panda codegen` runs before builds.
 
 ## Usage
 
