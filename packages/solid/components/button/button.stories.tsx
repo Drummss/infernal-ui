@@ -61,6 +61,17 @@ export const WithIcons = meta.story({
   ),
 });
 
+export const InlineAlignment = meta.story({
+  render: () => (
+    <div>
+      <Button>Get Started</Button>
+      <Button style={{ 'margin-left': '12px' }} variant="outline" iconLeft={<CheckIcon />}>
+        Github
+      </Button>
+    </div>
+  ),
+});
+
 export const IconOnly = meta.story({
   render: () => (
     <div style={{ display: 'flex', gap: '12px' }}>

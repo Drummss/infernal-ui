@@ -4,6 +4,7 @@ export const buttonRecipe = defineRecipe({
   className: 'button',
   base: {
     display: 'inline-flex',
+    verticalAlign: 'middle',
     alignItems: 'center',
     justifyContent: 'center',
     gap: '2',
@@ -55,15 +56,15 @@ export const buttonRecipe = defineRecipe({
         bg: 'transparent',
         color: 'typography.color.body',
         borderColor: 'palette.primary.main',
-        _hover: { bg: 'palette.background.subtle' },
-        _active: { bg: 'palette.background' },
+        _hover: { bg: { base: 'blackAlpha.100', _dark: 'whiteAlpha.100' } },
+        _active: { bg: { base: 'blackAlpha.50', _dark: 'whiteAlpha.50' } },
       },
       ghost: {
         bg: 'transparent',
         color: 'typography.color.body',
         borderColor: 'transparent',
-        _hover: { bg: 'palette.background.surface' },
-        _active: { bg: 'palette.background.surface' },
+        _hover: { bg: { base: 'blackAlpha.100', _dark: 'whiteAlpha.100' } },
+        _active: { bg: { base: 'blackAlpha.50', _dark: 'whiteAlpha.50' } },
       },
     },
     size: {
@@ -72,8 +73,8 @@ export const buttonRecipe = defineRecipe({
         px: '3',
         fontSize: 'sm',
         '& [data-slot=icon] > svg': {
-          width: '3.5',
-          height: '3.5',
+          width: '4',
+          height: '4',
         },
       },
       md: {
@@ -81,8 +82,8 @@ export const buttonRecipe = defineRecipe({
         px: '4',
         fontSize: 'sm',
         '& [data-slot=icon] > svg': {
-          width: '4',
-          height: '4',
+          width: '5',
+          height: '5',
         },
       },
       lg: {
@@ -90,8 +91,8 @@ export const buttonRecipe = defineRecipe({
         px: '5',
         fontSize: 'md',
         '& [data-slot=icon] > svg': {
-          width: '5',
-          height: '5',
+          width: '6',
+          height: '6',
         },
       },
     },
