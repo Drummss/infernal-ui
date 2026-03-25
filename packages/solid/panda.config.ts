@@ -1,6 +1,7 @@
 import { defineConfig } from '@pandacss/dev';
 import pandaPreset from '@pandacss/dev/presets';
-import { infernalPreset } from '@infernal-ui/preset';
+// Use preset source in the workspace so Panda rebuilds on leaf source edits during dev.
+import { infernalPreset } from '../preset/src/index';
 
 export default defineConfig({
   jsxFramework: 'solid',

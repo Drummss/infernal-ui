@@ -3,7 +3,6 @@
   "tasks": {
     "dev": {
       "with": [
-        "@infernal-ui/preset#dev",
         "@infernal-ui/styled-system#dev",
         "@infernal-ui/solid#dev"
       ]

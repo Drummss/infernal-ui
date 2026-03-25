@@ -11,6 +11,7 @@ export {
   infernalAccentThemes,
 } from './accents';
 export {
+  alertRecipe,
   buttonRecipe,
   headingRecipe,
   inputRecipe,
