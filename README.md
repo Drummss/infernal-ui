@@ -16,6 +16,7 @@ Infernal UI is a SolidJS component library built on Panda CSS and Ark UI. This r
 - `packages/preset`: publishable Panda preset package
 - `packages/styled-system`: publishable generated styled-system package
 - `apps/solid-kitchen-sink`: Vite app used to dogfood and manually validate the packages
+- `apps/docs`: Vite docs app for public-facing documentation and library dogfooding
 - `docs`: repository-level notes such as the changesets playbook
 
 ## Local Development
@@ -34,6 +35,7 @@ Useful targeted commands:
 
 ```sh
 pnpm dev --filter solid-kitchen-sink
+pnpm dev --filter ./apps/docs
 pnpm --filter @infernal-ui/solid storybook
 pnpm --filter @infernal-ui/solid build-storybook
 ```
@@ -44,6 +46,7 @@ pnpm --filter @infernal-ui/solid build-storybook
 - `@infernal-ui/styled-system`: Panda codegen and cssgen in watch mode
 - `@infernal-ui/solid`: JS build watch, declaration watch, and Panda ship watch for consumer-facing outputs
 - `solid-kitchen-sink`: app-local Panda codegen/cssgen and the Vite dev server
+- `apps/docs`: app-local Panda codegen/cssgen and the Vite dev server for docs work
 
 When you want a narrower local loop, prefer Turbo-filtered root commands such as
 `pnpm dev --filter solid-kitchen-sink`. That keeps dependency watchers like

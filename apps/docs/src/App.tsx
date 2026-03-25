@@ -1,6 +1,7 @@
 import { InfernalContext } from '@infernal-ui/solid';
-import { Route, Router } from '@solidjs/router';
+import { Navigate, Route, Router } from '@solidjs/router';
 import { type Component, lazy } from 'solid-js';
+import { defaultDocsHref } from './content/docs';
 import { DocsLayout, HomeLayout } from './layouts';
 
 const HomePage = lazy(() => import('./pages/home-page'));
@@ -11,10 +12,11 @@ const App: Component = () => {
     <InfernalContext defaultTheme="dark">
       <Router>
         <Route path="/" component={HomeLayout}>
-          <Route component={HomePage} />
+          <Route path="/" component={HomePage} />
         </Route>
         <Route path="/docs" component={DocsLayout}>
-          <Route component={DocsPage} />
+          <Route path="/" component={() => <Navigate href={defaultDocsHref} />} />
+          <Route path="/*page" component={DocsPage} />
         </Route>
       </Router>
     </InfernalContext>
