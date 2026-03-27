@@ -7,13 +7,11 @@ import {
 } from '@infernal-ui/solid';
 import { createSignal } from 'solid-js';
 import {
-  codeBlock,
-  type DocPage,
-  page,
-  paragraphs,
-  preview,
-  section,
-} from '../../authoring';
+  DocsCodeBlock,
+  DocsParagraph,
+  DocsPreview,
+} from '../../../../components/docs';
+import { code, type DocPage, page, section } from '../../authoring';
 
 const RadioGroupPreview = () => {
   const [value, setValue] = createSignal<string | null>('npm');
@@ -79,57 +77,80 @@ export const radioGroupDocPage: DocPage = page({
   category: 'Components',
   href: '/docs/components/radio-group',
   title: 'Radio Group',
-  prelude: [
-    paragraphs(
-      'Radio groups are a good documentation target because they exercise compound composition, accessibility wiring, and controlled state.',
-      'Document both the low-level compound API and the simpler convenience wrapper so consumers can choose the right level of control.',
-    ),
-  ],
+  prelude: () => (
+    <>
+      <DocsParagraph>
+        Radio groups are a good documentation target because they exercise
+        compound composition, accessibility wiring, and controlled state.
+      </DocsParagraph>
+      <DocsParagraph>
+        Document both the low-level compound API and the simpler convenience
+        wrapper so consumers can choose the right level of control.
+      </DocsParagraph>
+    </>
+  ),
   sections: [
     section({
       id: 'when-to-use',
       title: 'When to use it',
-      content: [
-        paragraphs(
-          'Reach for radio groups when the user must choose exactly one option from a short list.',
-          'In docs, this is a useful component to show because it proves the field primitives, labels, disabled state, and validation messaging all work together.',
-        ),
-      ],
+      content: () => (
+        <>
+          <DocsParagraph>
+            Reach for radio groups when the user must choose exactly one option
+            from a short list.
+          </DocsParagraph>
+          <DocsParagraph>
+            In docs, this is a useful component to show because it proves the
+            field primitives, labels, disabled state, and validation messaging
+            all work together.
+          </DocsParagraph>
+        </>
+      ),
     }),
     section({
       id: 'preview',
       title: 'Preview',
-      content: [
-        paragraphs(
-          'The preview below demonstrates both the convenience wrapper and the compound API.',
-        ),
-        preview(RadioGroupPreview),
-      ],
+      content: () => (
+        <>
+          <DocsParagraph>
+            The preview below demonstrates both the convenience wrapper and the
+            compound API.
+          </DocsParagraph>
+          <DocsPreview>
+            <RadioGroupPreview />
+          </DocsPreview>
+        </>
+      ),
     }),
     section({
       id: 'controlled-example',
       title: 'Controlled example',
-      content: [
-        paragraphs(
-          'When you document stateful components, include a controlled example so consumers can see the shape of the callback and the expected source of truth.',
-        ),
-        codeBlock({
-          language: 'tsx',
-          title: 'Controlled radio group',
-          code: `const [value, setValue] = createSignal<string | null>('pnpm');
+      content: () => (
+        <>
+          <DocsParagraph>
+            When you document stateful components, include a controlled example
+            so consumers can see the shape of the callback and the expected
+            source of truth.
+          </DocsParagraph>
+          <DocsCodeBlock
+            language="tsx"
+            title="Controlled radio group"
+            code={code`
+              const [value, setValue] = createSignal<string | null>('pnpm');
 
-<SimpleRadioGroup
-  label="Choose your package manager"
-  items={[
-    { label: 'pnpm', value: 'pnpm' },
-    { label: 'npm', value: 'npm' },
-  ]}
-  value={value()}
-  onValueChange={setValue}
-/>;
-`,
-        }),
-      ],
+              <SimpleRadioGroup
+                label="Choose your package manager"
+                items={[
+                  { label: 'pnpm', value: 'pnpm' },
+                  { label: 'npm', value: 'npm' },
+                ]}
+                value={value()}
+                onValueChange={setValue}
+              />;
+            `}
+          />
+        </>
+      ),
     }),
   ],
 });

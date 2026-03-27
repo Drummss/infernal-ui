@@ -1,4 +1,4 @@
-import { Alert, Box, Heading, Text, VStack } from '@infernal-ui/solid';
+import { Box, Heading, Text, VStack } from '@infernal-ui/solid';
 import { A, Navigate, useLocation, useParams } from '@solidjs/router';
 import {
   createEffect,
@@ -7,71 +7,12 @@ import {
   onCleanup,
   Show,
 } from 'solid-js';
-import { CodeBlock } from '../components/docs/code-block';
 import {
-  type DocComponent,
   defaultDocsHref,
   getActiveCategoryFromPath,
   getDocPageFromWildcard,
   getPagesByCategory,
 } from '../content/docs';
-
-const resolveDocComponent = (docComponent: DocComponent) => {
-  switch (docComponent.type) {
-    case 'alert':
-      return (
-        <Alert colorScheme={docComponent.colorScheme}>
-          {docComponent.text}
-        </Alert>
-      );
-    case 'bullet-points':
-      return (
-        <VStack as="ul" m="0" pl="5" gap="2" listStyleType="initial">
-          {docComponent.list.map((bullet) => (
-            <Text as="li">{bullet}</Text>
-          ))}
-        </VStack>
-      );
-    case 'code':
-      return (
-        <CodeBlock
-          title={docComponent.title}
-          language={docComponent.language}
-          value={docComponent.code}
-        />
-      );
-    case 'note':
-      return (
-        <Box
-          px="4"
-          py="3"
-          rounded="md"
-          borderWidth="1px"
-          borderColor="palette.border"
-          bg="palette.background.subtle"
-          color="palette.text.muted"
-        >
-          {docComponent.text}
-        </Box>
-      );
-    case 'paragraph':
-      return docComponent.parts.map((paragraph) => <Text>{paragraph}</Text>);
-    case 'preview':
-      return (
-        <Box
-          p="5"
-          rounded="md"
-          borderWidth="1px"
-          borderColor="palette.border"
-          bg="palette.background.subtle"
-        >
-          <docComponent.component />
-        </Box>
-      );
-    default:
-      return <Box>There was an issue resolving this `DocComponent`.</Box>;
-  }
-};
 
 export const DocsPage = () => {
   const location = useLocation();
@@ -244,11 +185,7 @@ export const DocsPage = () => {
             <VStack gap="4" color="palette.text.muted">
               <Heading level={1}>{page.title}</Heading>
 
-              <Show when={page.prelude}>
-                {page.prelude?.map((contentPart) =>
-                  resolveDocComponent(contentPart),
-                )}
-              </Show>
+              {page.prelude?.()}
             </VStack>
 
             {page.sections.map((section) => (
@@ -272,9 +209,7 @@ export const DocsPage = () => {
                   </Text>
                 </Heading>
 
-                {section.content.map((contentPart) =>
-                  resolveDocComponent(contentPart),
-                )}
+                {section.content()}
               </VStack>
             ))}
           </VStack>

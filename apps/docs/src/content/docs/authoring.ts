@@ -1,31 +1,8 @@
-import type { AlertVariantProps } from '@infernal-ui/styled-system/recipes';
-import type { Component } from 'solid-js';
-import type {
-  DocAlert,
-  DocBulletPoints,
-  DocCodeBlock,
-  DocNote,
-  DocPage,
-  DocParagraph,
-  DocPreview,
-  DocSection,
-} from './types';
+import type { DocPage, DocSection } from './types';
 
-export type {
-  DocBulletPoints,
-  DocCategory,
-  DocCodeBlock,
-  DocComponent,
-  DocNote,
-  DocPage,
-  DocParagraph,
-  DocPreview,
-  DocSection,
-} from './types';
+export type { DocCategory, DocPage, DocRender, DocSection } from './types';
 
 type SectionOptions = Pick<DocSection, 'id' | 'title' | 'content'>;
-
-type CodeBlockOptions = Pick<DocCodeBlock, 'language' | 'code' | 'title'>;
 
 type PageOptions = Pick<
   DocPage,
@@ -56,42 +33,38 @@ export const section = ({
   content,
 });
 
-export const paragraphs = (...parts: string[]): DocParagraph => ({
-  type: 'paragraph',
-  parts,
-});
+export const code = (
+  strings: TemplateStringsArray,
+  ...values: Array<string | number>
+) => {
+  const raw = strings.reduce(
+    (result, part, index) => result + part + (values[index] ?? ''),
+    '',
+  );
 
-export const bulletPoints = (...list: string[]): DocBulletPoints => ({
-  type: 'bullet-points',
-  list,
-});
+  if (!raw.includes('\n')) {
+    return raw;
+  }
 
-export const codeBlock = ({
-  language,
-  code,
-  title,
-}: CodeBlockOptions): DocCodeBlock => ({
-  type: 'code',
-  language,
-  code,
-  title,
-});
+  const lines = raw.replace(/\r\n/g, '\n').split('\n');
+  const start =
+    lines[0]?.trim() === '' ? 1 : 0;
+  const end =
+    lines.at(-1)?.trim() === '' ? lines.length - 1 : lines.length;
+  const contentLines = lines.slice(start, end);
 
-export const note = (text: string): DocNote => ({
-  type: 'note',
-  text,
-});
+  const minIndent = contentLines.reduce<number>((indent, line) => {
+    if (line.trim() === '') {
+      return indent;
+    }
 
-export const preview = (component: Component): DocPreview => ({
-  type: 'preview',
-  component,
-});
+    const lineIndent = line.match(/^\s*/)?.[0].length ?? 0;
+    return Math.min(indent, lineIndent);
+  }, Number.POSITIVE_INFINITY);
 
-export const alert = (
-  text: string,
-  colorScheme: AlertVariantProps['colorScheme'] = 'info',
-): DocAlert => ({
-  type: 'alert',
-  colorScheme,
-  text,
-});
+  if (!Number.isFinite(minIndent)) {
+    return contentLines.join('\n');
+  }
+
+  return contentLines.map((line) => line.slice(minIndent)).join('\n');
+};

@@ -6,10 +6,10 @@ const DOCS_MONO_FONT_FAMILY =
 type CodeBlockProps = {
   language: 'sh' | 'tsx';
   title?: string;
-  value: string;
+  code: string;
 };
 
-export const CodeBlock = (props: CodeBlockProps) => {
+export const DocsCodeBlock = (props: CodeBlockProps) => {
   return (
     <Box
       borderWidth="1px"
@@ -46,7 +46,7 @@ export const CodeBlock = (props: CodeBlockProps) => {
         lineHeight="1.7"
         color="palette.text"
       >
-        <code>{props.value}</code>
+        <code>{props.code}</code>
       </Box>
     </Box>
   );

@@ -11,11 +11,4 @@ export {
   isDocCategoryPath,
 } from './registry';
 
-export type {
-  DocBulletPoints,
-  DocCategory,
-  DocCodeBlock,
-  DocComponent,
-  DocPage,
-  DocSection,
-} from './types';
+export type { DocCategory, DocPage, DocSection } from './types';
