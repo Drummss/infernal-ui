@@ -47,7 +47,7 @@ export const installationDocPage: DocPage = page({
             can generate your local styled-system output.
           </DocsParagraph>
           <DocsCodeBlock
-            language="sh"
+            language="bash"
             title="Add dependencies"
             code={code`
               pnpm add @infernal-ui/solid @infernal-ui/styled-system
@@ -71,7 +71,7 @@ export const installationDocPage: DocPage = page({
             starting from a standard Solid + Vite project.
           </DocsParagraph>
           <DocsCodeBlock
-            language="sh"
+            language="bash"
             title="Bootstrap Infernal UI"
             code={code`
               pnpm exec infernal init

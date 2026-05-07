@@ -1,1 +1,35 @@
 @layer reset, base, tokens, recipes, utilities;
+
+@layer base {
+  .docs-code-block__highlight :where(.shiki) {
+    margin: 0;
+    padding: 1rem;
+    overflow-x: auto;
+    font-family: "JetBrains Mono", "SFMono-Regular", "SF Mono", monospace;
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+
+  .docs-code-block__highlight :where(.shiki),
+  .docs-code-block__highlight :where(.shiki span) {
+    color: var(--shiki-light);
+    background-color: var(--shiki-light-bg);
+    font-style: var(--shiki-light-font-style);
+    font-weight: var(--shiki-light-font-weight);
+    text-decoration: var(--shiki-light-text-decoration);
+  }
+
+  .docs-code-block__highlight :where(.shiki code) {
+    display: block;
+    min-width: 100%;
+  }
+
+  html.dark .docs-code-block__highlight :where(.shiki),
+  html.dark .docs-code-block__highlight :where(.shiki span) {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+    font-style: var(--shiki-dark-font-style);
+    font-weight: var(--shiki-dark-font-weight);
+    text-decoration: var(--shiki-dark-text-decoration);
+  }
+}
