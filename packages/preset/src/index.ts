@@ -6,6 +6,15 @@ import { slotRecipes } from './slot-recipes';
 
 export type { InfernalAccentName, InfernalAccentScale } from './accents';
 export {
+  createSubtleColor,
+  darkenColor,
+  lightenColor,
+  mixColor,
+  transparentizeColor,
+  type InfernalColorTransformOptions,
+  type InfernalColorValue,
+} from './helpers';
+export {
   createAccentTheme,
   infernalAccentNames,
   infernalAccentThemes,

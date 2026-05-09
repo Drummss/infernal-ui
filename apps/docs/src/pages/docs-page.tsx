@@ -158,11 +158,7 @@ export const DocsPage = () => {
                       px="3"
                       py="1.5"
                       fontSize="sm"
-                      bg={
-                        active
-                          ? 'rgba(254, 120, 48, 0.15) !important'
-                          : 'transparent'
-                      }
+                      bg={active ? 'palette.primary.background' : 'transparent'}
                       color={
                         active
                           ? 'palette.primary.main !important'
