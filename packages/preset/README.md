@@ -38,11 +38,12 @@ Built-in accent themes include `blue`, `crimson`, `emerald`, and `amber`.
 Use `createAccentTheme` when you want to define your own Panda theme:
 
 ```ts
-import { createAccentTheme } from '@infernal-ui/preset';
+import { createAccentTheme, createSubtleColor } from '@infernal-ui/preset';
 
 const volcanic = createAccentTheme({
   primary: {
     main: '{colors.orange.600}',
+    background: createSubtleColor('{colors.orange.600}'),
     hover: '{colors.orange.700}',
     active: '{colors.orange.500}',
     focus: '{colors.orange.500}',
@@ -51,12 +52,33 @@ const volcanic = createAccentTheme({
 });
 ```
 
+Color helpers are also available for generating swatches anywhere in your theme:
+
+```ts
+import {
+  createSubtleColor,
+  darkenColor,
+  lightenColor,
+  mixColor,
+  transparentizeColor,
+} from '@infernal-ui/preset';
+
+const main = '{colors.orange.600}';
+
+const background = createSubtleColor(main);
+const hover = darkenColor(main, { amount: 12 });
+const active = lightenColor(main, { amount: 8 });
+const muted = transparentizeColor(main, { amount: 20 });
+const tinted = mixColor(main, '{colors.gray.50}', { amount: 18 });
+```
+
 Add the returned theme object to your Panda config's `themes` field.
 
 ## Key exports
 
 - `infernalPreset`: preset with Infernal UI recipes, slot recipes, semantic tokens, and built-in accent themes
 - `createAccentTheme`: helper for custom accent themes
+- `mixColor`, `lightenColor`, `darkenColor`, `transparentizeColor`, `createSubtleColor`: generic color generation helpers
 - `infernalAccentNames`: built-in accent theme names
 - `infernalAccentThemes`: built-in accent theme definitions
 
