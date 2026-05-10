@@ -31,6 +31,7 @@ export {
   checkboxRecipe,
   fieldRecipe,
   fieldsetRecipe,
+  menuRecipe,
   radioGroupRecipe,
   selectRecipe,
   slotRecipes,

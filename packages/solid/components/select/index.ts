@@ -1,9 +1,9 @@
+export {
+  type CollectionItem,
+  createListCollection,
+  type ListCollection,
+  useListCollection,
+} from '@ark-ui/solid/select';
+export type { SelectRecipeVariants } from './select';
 export * from './select';
 export * from './simple-select';
-export type { SelectRecipeVariants } from './select';
-export {
-  createListCollection,
-  useListCollection,
-  type CollectionItem,
-  type ListCollection,
-} from '@ark-ui/solid/select';

@@ -8,6 +8,7 @@ export * from './flex';
 export * from './heading';
 export * from './icons';
 export * from './input';
+export * from './menu';
 export * from './radio-group';
 export * from './select';
 export * from './text';
