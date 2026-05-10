@@ -25,20 +25,19 @@ const warnHighlightFailure = (language: string, reason: string) => {
   }
 };
 
-const isSupportedLanguage = (
-  language: string,
-): language is SupportedLanguage => Object.hasOwn(languageLoaders, language);
+const isSupportedLanguage = (language: string): language is SupportedLanguage =>
+  Object.hasOwn(languageLoaders, language);
 
 const getHighlighter = () => {
   if (!highlighterPromise) {
     highlighterPromise = Promise.all([
-      import('shiki/themes/github-light.mjs'),
-      import('shiki/themes/github-dark.mjs'),
-    ]).then(([githubLight, githubDark]) =>
+      import('shiki/themes/dark-plus.mjs'),
+      import('shiki/themes/dark-plus.mjs'),
+    ]).then(([themeLight, themeDark]) =>
       createHighlighterCore({
         engine: createJavaScriptRegexEngine(),
         langs: [],
-        themes: [githubLight.default, githubDark.default],
+        themes: [themeLight.default, themeDark.default],
       }),
     );
   }
@@ -82,8 +81,8 @@ const highlightCode = async (language: string, code: string) => {
       defaultColor: false,
       lang: language,
       themes: {
-        light: 'github-light',
-        dark: 'github-dark',
+        light: 'dark-plus',
+        dark: 'dark-plus',
       },
     });
   } catch (error: unknown) {
@@ -110,25 +109,27 @@ export const DocsCodeBlock = (props: CodeBlockProps) => {
       borderColor="palette.border"
       rounded="md"
       overflow="hidden"
-      bg="palette.background.emphasized"
+      bg="palette.dark-pro"
     >
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-        gap="3"
-        px="4"
-        py="3"
-        borderBottomWidth="1px"
-        borderBottomColor="palette.border"
-      >
-        <Text as="span" fontSize="sm" color="palette.text.muted">
-          {props.title ?? 'Snippet'}
-        </Text>
-        <Text as="span" fontSize="xs" color="palette.text.muted">
-          {props.language}
-        </Text>
-      </Box>
+      <Show when={props.title}>
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          gap="3"
+          px="4"
+          py="3"
+          borderBottomWidth="1px"
+          borderBottomColor="palette.border"
+        >
+          <Text as="span" fontSize="sm" color="palette.text.muted">
+            {props.title}
+          </Text>
+          <Text as="span" fontSize="xs" color="palette.text.muted">
+            {props.language}
+          </Text>
+        </Box>
+      </Show>
 
       <Show
         when={highlightedHtml()}
@@ -148,7 +149,12 @@ export const DocsCodeBlock = (props: CodeBlockProps) => {
         }
       >
         {(html) => (
-          <Box class="docs-code-block__highlight" innerHTML={html()} />
+          <Box
+            class="docs-code-block__highlight"
+            innerHTML={html()}
+            maxH="24rem"
+            overflowY="auto"
+          />
         )}
       </Show>
     </Box>
