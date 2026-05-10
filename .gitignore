@@ -19,6 +19,8 @@ out/
 storybook-static/
 coverage/
 *.tsbuildinfo
+result
+result-*
 
 # Turbo / task caches
 .turbo/
