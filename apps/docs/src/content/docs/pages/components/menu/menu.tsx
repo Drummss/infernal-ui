@@ -20,7 +20,7 @@ import {
 } from '.';
 
 export const menuDocsPage: DocPage = page({
-  category: 'Components',
+  category: 'Overlays',
   href: '/docs/components/menu',
   title: 'Menu',
   prelude: () => (

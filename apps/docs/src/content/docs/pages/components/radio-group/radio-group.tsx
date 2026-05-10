@@ -22,7 +22,7 @@ const contactPreferenceItems = [
 ] as const;
 
 export const radioGroupDocPage: DocPage = page({
-  category: 'Components',
+  category: 'Forms',
   href: '/docs/components/radio-group',
   title: 'Radio Group',
   prelude: () => (

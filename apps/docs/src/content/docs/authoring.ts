@@ -1,13 +1,6 @@
 import type { DocPage, DocSection } from './types';
 
-export type { DocCategory, DocPage, DocRender, DocSection } from './types';
-
-type SectionOptions = Pick<DocSection, 'id' | 'title' | 'content'>;
-
-type PageOptions = Pick<
-  DocPage,
-  'category' | 'title' | 'href' | 'prelude' | 'sections'
->;
+export type { DocPage, DocSection } from './types';
 
 export const page = ({
   category,
@@ -15,7 +8,7 @@ export const page = ({
   href,
   prelude,
   sections,
-}: PageOptions): DocPage => ({
+}: DocPage): DocPage => ({
   category,
   title,
   href,
@@ -27,7 +20,7 @@ export const section = ({
   id,
   title,
   content,
-}: SectionOptions): DocSection => ({
+}: DocSection): DocSection => ({
   id,
   title,
   content,

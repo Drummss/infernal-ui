@@ -1,15 +1,230 @@
 import { Box, Flex, Heading, HStack, Text, VStack } from '@infernal-ui/solid';
 import { A, useLocation } from '@solidjs/router';
-import type { ParentProps } from 'solid-js';
-import { ActionButtons } from '../components/layout/action-buttons';
 import {
-  docCategories,
-  getCategoryLandingHref,
-  isDocCategoryPath,
-} from '../content/docs';
+  createEffect,
+  createMemo,
+  createSignal,
+  onCleanup,
+  type ParentProps,
+  Show,
+} from 'solid-js';
+import { ActionButtons } from '../components/layout/action-buttons';
+import type { DocPage } from '../content/docs';
+import { buttonDocPage } from '../content/docs/pages/components/button/button';
+import { menuDocsPage } from '../content/docs/pages/components/menu/menu';
+import { radioGroupDocPage } from '../content/docs/pages/components/radio-group/radio-group';
+import { installationDocPage } from '../content/docs/pages/overview/installation';
+
+type DocsGroup = {
+  title: string;
+  pages: DocPage[];
+};
+
+type DocsSection = {
+  title: string;
+  basePath: string;
+  landingPage: DocPage;
+  groups: DocsGroup[];
+};
+
+const gettingStartedDocsGrouped: DocsGroup[] = [
+  {
+    title: installationDocPage.category,
+    pages: [installationDocPage],
+  },
+];
+
+const componentDocsGrouped: DocsGroup[] = [
+  {
+    title: buttonDocPage.category,
+    pages: [buttonDocPage],
+  },
+  {
+    title: radioGroupDocPage.category,
+    pages: [radioGroupDocPage],
+  },
+  {
+    title: menuDocsPage.category,
+    pages: [menuDocsPage],
+  },
+];
+
+export const docsSections: DocsSection[] = [
+  {
+    title: 'Getting Started',
+    basePath: '/docs/get-started',
+    landingPage: installationDocPage,
+    groups: gettingStartedDocsGrouped,
+  },
+  {
+    title: 'Components',
+    basePath: '/docs/components',
+    landingPage: buttonDocPage,
+    groups: componentDocsGrouped,
+  },
+];
+
+export const docsPages = docsSections.flatMap((section) =>
+  section.groups.flatMap((group) => group.pages),
+);
+
+export const defaultDocsHref = docsSections[0]?.landingPage.href ?? '/docs';
+
+const docsPathPrefix = '/docs/';
+
+const getDocsRoutePath = (href: string) =>
+  href.startsWith(docsPathPrefix) ? href.slice(docsPathPrefix.length) : href;
+
+export const docsRoutes = docsPages.map((page) => ({
+  path: getDocsRoutePath(page.href),
+  page,
+}));
+
+const findDocsSection = (pathname: string) =>
+  docsSections.find((section) => pathname.startsWith(section.basePath));
+
+const findDocPage = (pathname: string) =>
+  docsPages.find((page) => page.href === pathname);
+
+const DocsTableOfContents = (props: { page?: DocPage }) => {
+  const [activeSectionId, setActiveSectionId] = createSignal<string | null>(
+    null,
+  );
+
+  createEffect(() => {
+    const page = props.page;
+
+    if (!page) {
+      setActiveSectionId(null);
+      return;
+    }
+
+    setActiveSectionId(page.sections[0]?.id ?? null);
+
+    const sectionElements = page.sections
+      .map((section) => document.getElementById(section.id))
+      .filter(
+        (element): element is HTMLElement => element instanceof HTMLElement,
+      );
+
+    if (sectionElements.length === 0) {
+      return;
+    }
+
+    const isAtPageBottom = () =>
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 2;
+
+    const updateActiveSection = () => {
+      if (isAtPageBottom()) {
+        setActiveSectionId(page.sections.at(-1)?.id ?? null);
+        return;
+      }
+
+      const viewportCenter = window.innerHeight / 2;
+
+      const activeElement = sectionElements.reduce<HTMLElement | null>(
+        (closestElement, currentElement) => {
+          const currentRect = currentElement.getBoundingClientRect();
+          const currentCenter = currentRect.top + currentRect.height / 2;
+
+          if (!closestElement) {
+            return currentElement;
+          }
+
+          const closestRect = closestElement.getBoundingClientRect();
+          const closestCenter = closestRect.top + closestRect.height / 2;
+
+          return Math.abs(currentCenter - viewportCenter) <
+            Math.abs(closestCenter - viewportCenter)
+            ? currentElement
+            : closestElement;
+        },
+        null,
+      );
+
+      if (activeElement) {
+        setActiveSectionId(activeElement.id);
+      }
+    };
+
+    let resizeObserver: ResizeObserver | undefined;
+
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(() => {
+        updateActiveSection();
+      });
+
+      sectionElements.forEach((element) => {
+        resizeObserver?.observe(element);
+      });
+    }
+
+    updateActiveSection();
+
+    const handleViewportChange = () => {
+      updateActiveSection();
+    };
+
+    window.addEventListener('scroll', handleViewportChange, { passive: true });
+    window.addEventListener('resize', handleViewportChange);
+
+    onCleanup(() => {
+      resizeObserver?.disconnect();
+      window.removeEventListener('scroll', handleViewportChange);
+      window.removeEventListener('resize', handleViewportChange);
+    });
+  });
+
+  return (
+    <Show when={props.page}>
+      {(page) => (
+        <VStack
+          as="aside"
+          position="sticky"
+          display={{ mdDown: 'none', xl: 'flex' }}
+          top="90px"
+          h="calc(100vh - 90px)"
+          minW="14rem"
+          py="8"
+          gap="3"
+          overflowY="auto"
+        >
+          <Text as="span">On this page</Text>
+          <VStack display="grid" gap="2">
+            {page().sections.map((section) => (
+              <Box
+                as="a"
+                href={`#${section.id}`}
+                textDecoration="none"
+                color={
+                  activeSectionId() === section.id
+                    ? 'palette.text'
+                    : 'palette.text.muted'
+                }
+                fontSize="sm"
+                transition="all 0.2s"
+                _hover={{
+                  color: 'palette.text',
+                }}
+              >
+                {section.title}
+              </Box>
+            ))}
+          </VStack>
+        </VStack>
+      )}
+    </Show>
+  );
+};
 
 export const DocsLayout = (props: ParentProps) => {
   const location = useLocation();
+
+  const activeSection = createMemo(
+    () => findDocsSection(location.pathname) ?? docsSections[0],
+  );
+  const activePage = createMemo(() => findDocPage(location.pathname));
 
   return (
     <VStack minHeight="100vh">
@@ -27,7 +242,6 @@ export const DocsLayout = (props: ParentProps) => {
       >
         <VStack maxW="breakpoint-xl" gap="3" flexGrow="1">
           <Flex justifyContent="space-between">
-            {/* Left Side */}
             <Flex alignItems="center">
               <HStack gap="4" alignItems="center">
                 <Box as={A} href="/">
@@ -44,24 +258,18 @@ export const DocsLayout = (props: ParentProps) => {
               </HStack>
             </Flex>
 
-            {/* Right Side */}
             <ActionButtons />
           </Flex>
 
           <Flex>
             <Flex gap="6">
-              {docCategories.map((category) => {
-                const active = isDocCategoryPath(category, location.pathname);
-                const href = getCategoryLandingHref(category);
-
-                if (!href) {
-                  return null;
-                }
+              {docsSections.map((section) => {
+                const active = location.pathname.startsWith(section.basePath);
 
                 return (
                   <Box
                     as={A}
-                    href={href}
+                    href={section.landingPage.href}
                     cursor="pointer"
                     borderColor={
                       active ? 'palette.primary.main' : 'transparent'
@@ -78,7 +286,7 @@ export const DocsLayout = (props: ParentProps) => {
                       borderColor: 'palette.border.emphasized',
                     }}
                   >
-                    {category}
+                    {section.title}
                   </Box>
                 );
               })}
@@ -88,8 +296,77 @@ export const DocsLayout = (props: ParentProps) => {
       </Flex>
 
       <Flex as="main" marginX="8" justifyContent="center" flexGrow="1">
-        {props.children}
+        <Box
+          position="relative"
+          display="flex"
+          gap="12"
+          maxW="breakpoint-xl"
+          w="full"
+          flexGrow="1"
+        >
+          <VStack
+            as="aside"
+            py="8"
+            pr="4"
+            minW="16rem"
+            h="calc(100vh - 90px)"
+            position="sticky"
+            top="90px"
+            gap="5"
+            overflowY="auto"
+          >
+            <VStack gap="4" alignItems="stretch">
+              {activeSection()?.groups.map((group) => (
+                <VStack gap="2" alignItems="stretch">
+                  <Text as="span" ml="3" fontSize="sm">
+                    {group.title}
+                  </Text>
+                  <VStack gap="2px" alignItems="stretch">
+                    {group.pages.map((page) => {
+                      const active = page.href === location.pathname;
+
+                      return (
+                        <Box
+                          as={A}
+                          href={page.href}
+                          borderRadius="sm"
+                          px="3"
+                          py="1.5"
+                          fontSize="sm"
+                          bg={
+                            active
+                              ? 'palette.primary.background'
+                              : 'transparent'
+                          }
+                          color={
+                            active
+                              ? 'palette.primary.main !important'
+                              : 'palette.text.muted'
+                          }
+                          _hover={{
+                            bg: 'palette.background.muted',
+                            color: 'palette.text',
+                          }}
+                        >
+                          {page.title}
+                        </Box>
+                      );
+                    })}
+                  </VStack>
+                </VStack>
+              ))}
+            </VStack>
+          </VStack>
+
+          <Box flexGrow="1" minW="0">
+            {props.children}
+          </Box>
+
+          <DocsTableOfContents page={activePage()} />
+        </Box>
       </Flex>
     </VStack>
   );
 };
+
+export default DocsLayout;

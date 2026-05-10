@@ -2,7 +2,6 @@ import { Box, Button, CheckIcon, ChevronDownIcon } from '@infernal-ui/solid';
 import { createSignal } from 'solid-js';
 import {
   DocsCodeBlock,
-  DocsParagraph,
   DocsPreludeParagraph,
   DocsPreview,
 } from '../../../../../components/docs';
@@ -10,7 +9,7 @@ import { code, type DocPage, page, section } from '../../../authoring';
 import { buttonExampleCode } from '.';
 import { ButtonExample } from './button.example';
 
-const ButtonPreview = () => {
+export const ButtonPreview = () => {
   const [count, setCount] = createSignal(0);
 
   return (
@@ -35,7 +34,7 @@ const ButtonPreview = () => {
 };
 
 export const buttonDocPage: DocPage = page({
-  category: 'Components',
+  category: 'Buttons',
   href: '/docs/components/button',
   title: 'Button',
   prelude: () => (

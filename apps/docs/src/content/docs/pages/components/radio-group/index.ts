@@ -1,3 +1,5 @@
+export * from './radio-group';
+
 export { RadioGroupCompoundExample } from './radio-group-compound.example';
 export { default as radioGroupCompoundCode } from './radio-group-compound.example?raw';
 

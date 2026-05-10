@@ -10,7 +10,7 @@ import {
 import { code, type DocPage, page, section } from '../../authoring';
 
 export const installationDocPage: DocPage = page({
-  category: 'Getting Started',
+  category: 'Overview',
   href: '/docs/get-started/installation',
   title: 'Installation',
   prelude: () => (

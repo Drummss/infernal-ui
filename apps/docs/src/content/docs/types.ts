@@ -1,10 +1,9 @@
 import type { JSX } from 'solid-js';
 
-export type DocCategory = 'Getting Started' | 'Components';
 export type DocRender = () => JSX.Element;
 
 export type DocPage = {
-  category: DocCategory;
+  category: string;
   title: string;
   href: string;
   prelude?: DocRender;
