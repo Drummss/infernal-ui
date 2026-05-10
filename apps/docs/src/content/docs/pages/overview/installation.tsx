@@ -19,15 +19,6 @@ export const installationDocPage: DocPage = page({
         This project has not been tested or even developed with solid-start in
         mind. Concrete support is planned for the future.
       </DocsAlert>
-      <DocsParagraph>
-        Install the package, wire Panda CSS, and render your first Infernal UI
-        component with the same setup the library expects in a real Solid app.
-      </DocsParagraph>
-      <DocsParagraph>
-        This is the recommended starting point for new users. The fastest path
-        is to install the dependencies and run `pnpm exec infernal init`, then
-        verify the setup with a minimal component example.
-      </DocsParagraph>
     </>
   ),
   sections: [
@@ -66,10 +57,6 @@ export const installationDocPage: DocPage = page({
             The recommended setup is the `infernal` CLI because it patches the
             common Panda, CSS, and bundler configuration automatically.
           </DocsParagraph>
-          <DocsParagraph>
-            This is the shortest path to a working app, especially if you are
-            starting from a standard Solid + Vite project.
-          </DocsParagraph>
           <DocsCodeBlock
             language="bash"
             title="Bootstrap Infernal UI"
@@ -99,10 +86,6 @@ export const installationDocPage: DocPage = page({
             If you do not want to use the CLI, you can apply the same setup by
             hand. The main pieces are a Panda config, Vite plugin wiring for
             Vite apps, and the required CSS imports.
-          </DocsParagraph>
-          <DocsParagraph>
-            This is useful if your project already has custom tooling and you
-            want full control over each file change.
           </DocsParagraph>
           <DocsCodeBlock
             language="tsx"
