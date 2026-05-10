@@ -1,5 +1,6 @@
-import { buttonDocPage } from './pages/components/button';
-import { radioGroupDocPage } from './pages/components/radio-group';
+import { buttonDocPage } from './pages/components/button/button';
+import { menuDocsPage } from './pages/components/menu/menu';
+import { radioGroupDocPage } from './pages/components/radio-group/radio-group';
 import { installationDocPage } from './pages/overview/installation';
 import type { DocCategory, DocPage } from './types';
 
@@ -12,6 +13,7 @@ export const docsPages: ReadonlyArray<DocPage> = [
   installationDocPage,
   buttonDocPage,
   radioGroupDocPage,
+  menuDocsPage,
 ];
 
 const categoryLandingPages: Record<DocCategory, string> = {
