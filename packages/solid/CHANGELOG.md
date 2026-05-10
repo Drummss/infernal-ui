@@ -1,5 +1,16 @@
 # @infernal-ui/solid
 
+## 0.2.0
+
+### Minor Changes
+
+- e4d238e: Added menu component.
+
+### Patch Changes
+
+- @infernal-ui/styled-system@0.2.0
+- @infernal-ui/preset@0.2.0
+
 ## 0.1.0
 
 ### Minor Changes
