@@ -1,6 +1,11 @@
 import { amberAccentTheme } from './amber';
 import { blueAccentTheme } from './blue';
-export { createAccentTheme, type InfernalAccentScale } from './create-accent-theme';
+
+export {
+  createAccentTheme,
+  type InfernalAccentScale,
+} from './create-accent-theme';
+
 import { crimsonAccentTheme } from './crimson';
 import { emeraldAccentTheme } from './emerald';
 

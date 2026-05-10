@@ -20,7 +20,8 @@ export const buttonRecipe = defineRecipe({
     _focusVisible: {
       outlineWidth: '2px',
       outlineStyle: 'solid',
-      outlineColor: 'palette.background.subtle',
+      outlineColor: { base: 'black', _dark: 'white' },
+      borderColor: 'transparent',
     },
     _disabled: {
       opacity: '0.5',
@@ -55,7 +56,7 @@ export const buttonRecipe = defineRecipe({
       outline: {
         bg: 'transparent',
         color: 'typography.color.body',
-        borderColor: 'palette.primary.main',
+        borderColor: 'gray.600',
         _hover: { bg: { base: 'blackAlpha.50', _dark: 'whiteAlpha.50' } },
         _active: { bg: { base: 'blackAlpha.100', _dark: 'whiteAlpha.100' } },
       },

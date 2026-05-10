@@ -1,8 +1,6 @@
 import type { SemanticTokens } from '@pandacss/dev';
+import type { InfernalColorValue } from '../helpers';
 import type { infernalSemanticColors } from '../semantic/semantic';
-
-type InfernalConditionalColorValue = Record<string, string>;
-export type InfernalColorValue = string | InfernalConditionalColorValue;
 
 type InfernalThemeColorOverrides<T = typeof infernalSemanticColors> =
   T extends { value: unknown }

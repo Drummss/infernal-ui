@@ -4,6 +4,7 @@ export const infernalSemanticColors = defineSemanticTokens.colors({
   palette: {
     primary: {
       main: { value: '#FE7830' },
+      background: { value: 'rgba(254, 120, 48, 0.15)' },
       hover: { value: '#e6834e' },
       active: { value: '#eb9769' },
       focus: { value: '#eb9769' },
@@ -26,7 +27,7 @@ export const infernalSemanticColors = defineSemanticTokens.colors({
       muted: { value: { base: '{colors.gray.100}', _dark: '{colors.gray.900}' } },
       emphasized: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.800}' } },
       inverted: { value: { base: '{colors.black}', _dark: '{colors.white}' } },
-      error: { value: { base: '{colors.red.50}', _dark: '{colors.red.900}' } },
+      error: { value: { base: '{colors.red.50}', _dark: '{colors.red.950}' } },
       warning: { value: { base: '{colors.amber.50}', _dark: '{colors.amber.900}' } },
       success: { value: { base: '{colors.green.50}', _dark: '{colors.green.900}' } },
       info: { value: { base: '{colors.blue.50}', _dark: '{colors.blue.900}' } },

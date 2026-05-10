@@ -1,8 +1,10 @@
+import { createSubtleColor } from '../helpers';
 import { createAccentTheme } from './create-accent-theme';
 
 export const amberAccentTheme = createAccentTheme({
   primary: {
     main: '{colors.amber.600}',
+    background: createSubtleColor('{colors.amber.600}'),
     hover: '{colors.amber.700}',
     active: '{colors.amber.500}',
     focus: '{colors.amber.500}',
