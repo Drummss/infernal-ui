@@ -9,7 +9,10 @@
     "build": "vite build",
     "serve": "vite preview",
     "check-types": "tsc --noEmit",
-    "prepare": "panda codegen"
+    "panda:codegen": "panda codegen",
+    "predev": "pnpm run panda:codegen",
+    "prebuild": "pnpm run panda:codegen",
+    "precheck-types": "pnpm run panda:codegen"
   },
   "license": "MIT",
   "devDependencies": {
