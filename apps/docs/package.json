@@ -27,6 +27,7 @@
     "@infernal-ui/preset": "workspace:*",
     "@infernal-ui/solid": "workspace:*",
     "@infernal-ui/styled-system": "workspace:*",
+    "@solidjs/meta": "^0.29.4",
     "@solidjs/router": "^0.16.1",
     "d3-delaunay": "^6.0.4",
     "shiki": "^4.0.2",
