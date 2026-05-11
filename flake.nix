@@ -8,40 +8,35 @@
   outputs = { self, nixpkgs }:
     let
       systems = [ "x86_64-linux" ];
-
       forAllSystems = nixpkgs.lib.genAttrs systems;
 
-      mkPkgs = system:
-        import nixpkgs {
-          inherit system;
-        };
+      packageName = "infernal-ui-docs";
+      packageVersion = "0.1.0";
     in
     {
-      packages = forAllSystems (system:
+      overlays.default = final: prev:
         let
-          pkgs = mkPkgs system;
-
-          nodejs = pkgs.nodejs_24;
-          pnpm = pkgs.pnpm_9.override {
+          nodejs = prev.nodejs_24;
+          pnpm = prev.pnpm_9.override {
             inherit nodejs;
           };
         in
         {
-          docs = pkgs.stdenv.mkDerivation (finalAttrs: {
-            pname = "infernal-ui-docs";
-            version = "0.1.0";
+          "${packageName}" = prev.stdenv.mkDerivation (finalAttrs: {
+            pname = packageName;
+            version = packageVersion;
 
-            src = ./.;
+            src = self;
 
             nativeBuildInputs = [
               nodejs
               pnpm
-              pkgs.pnpmConfigHook
+              prev.pnpmConfigHook
             ];
 
-            pnpmDeps = pkgs.fetchPnpmDeps {
+            pnpmDeps = prev.fetchPnpmDeps {
               inherit (finalAttrs) pname version src;
-              pnpm = pnpm;
+              inherit pnpm;
               fetcherVersion = 3;
 
               hash = "sha256-ud8weKm4E9H5fHgnJbmk+rM2OAn19j0wPN7rBlY0nN0=";
@@ -64,8 +59,20 @@
               runHook postInstall
             '';
           });
+        };
 
-          default = self.packages.${system}.docs;
+      packages = forAllSystems (system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ self.overlays.default ];
+          };
+
+          docs = pkgs.${packageName};
+        in
+        {
+          inherit docs;
+          default = docs;
         });
     };
 }
