@@ -4,9 +4,20 @@ import { createMemo, type ParentProps } from 'solid-js';
 import { ActionButtons } from '../components/layout/action-buttons';
 import { DocsTableOfContents } from '../components/layout/docs-table-of-contents';
 import type { DocPage } from '../content/docs';
+import { alertDocPage } from '../content/docs/pages/components/alert/alert';
+import { boxDocPage } from '../content/docs/pages/components/box/box';
 import { buttonDocPage } from '../content/docs/pages/components/button/button';
+import { checkboxDocPage } from '../content/docs/pages/components/checkbox/checkbox';
+import { fieldDocPage } from '../content/docs/pages/components/field/field';
+import { fieldsetDocPage } from '../content/docs/pages/components/fieldset/fieldset';
+import { flexDocPage } from '../content/docs/pages/components/flex/flex';
+import { headingDocPage } from '../content/docs/pages/components/heading/heading';
+import { inputDocPage } from '../content/docs/pages/components/input/input';
 import { menuDocsPage } from '../content/docs/pages/components/menu/menu';
 import { radioGroupDocPage } from '../content/docs/pages/components/radio-group/radio-group';
+import { selectDocPage } from '../content/docs/pages/components/select/select';
+import { textDocPage } from '../content/docs/pages/components/text/text';
+import { textareaDocPage } from '../content/docs/pages/components/textarea/textarea';
 import { installationDocPage } from '../content/docs/pages/overview/installation';
 
 type DocsGroup = {
@@ -30,12 +41,32 @@ const gettingStartedDocsGrouped: DocsGroup[] = [
 
 const componentDocsGrouped: DocsGroup[] = [
   {
+    title: boxDocPage.category,
+    pages: [boxDocPage, flexDocPage],
+  },
+  {
+    title: headingDocPage.category,
+    pages: [headingDocPage, textDocPage],
+  },
+  {
+    title: alertDocPage.category,
+    pages: [alertDocPage],
+  },
+  {
     title: buttonDocPage.category,
     pages: [buttonDocPage],
   },
   {
     title: radioGroupDocPage.category,
-    pages: [radioGroupDocPage],
+    pages: [
+      checkboxDocPage,
+      fieldDocPage,
+      fieldsetDocPage,
+      inputDocPage,
+      radioGroupDocPage,
+      selectDocPage,
+      textareaDocPage,
+    ],
   },
   {
     title: menuDocsPage.category,
@@ -53,7 +84,7 @@ export const docsSections: DocsSection[] = [
   {
     title: 'Components',
     basePath: '/docs/components',
-    landingPage: buttonDocPage,
+    landingPage: boxDocPage,
     groups: componentDocsGrouped,
   },
 ];
