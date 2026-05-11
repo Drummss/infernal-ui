@@ -39,7 +39,8 @@
               inherit pnpm;
               fetcherVersion = 3;
 
-              hash = "sha256-ud8weKm4E9H5fHgnJbmk+rM2OAn19j0wPN7rBlY0nN0=";
+              # hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+              hash = "sha256-BQ9W2fFJcqs2Cd4sGaXHEj/4yb93Ls+tKDs2vUtSdhY=";
             };
 
             buildPhase = ''
