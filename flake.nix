@@ -17,9 +17,7 @@
       overlays.default = final: prev:
         let
           nodejs = prev.nodejs_24;
-          pnpm = prev.pnpm_9.override {
-            inherit nodejs;
-          };
+          pnpm = prev.pnpm_11;
         in
         {
           "${packageName}" = prev.stdenv.mkDerivation (finalAttrs: {
@@ -37,14 +35,16 @@
             pnpmDeps = prev.fetchPnpmDeps {
               inherit (finalAttrs) pname version src;
               inherit pnpm;
-              fetcherVersion = 3;
+              fetcherVersion = 4;
 
               # hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-              hash = "sha256-BQ9W2fFJcqs2Cd4sGaXHEj/4yb93Ls+tKDs2vUtSdhY=";
+              hash = "sha256-FLFTtVnM0J2L7yIdVehuGNYOuOK+MAX0duCx34YwGoQ=";
             };
 
             buildPhase = ''
               runHook preBuild
+
+              export pnpm_config_pm_on_fail=ignore
 
               pnpm build
 
