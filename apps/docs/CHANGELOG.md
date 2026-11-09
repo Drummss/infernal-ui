@@ -1,5 +1,14 @@
 # infernal-ui-docs
 
+## 0.1.1
+
+### Patch Changes
+
+- Updated dependencies [34dfec6]
+  - @infernal-ui/solid@0.3.0
+  - @infernal-ui/preset@0.3.0
+  - @infernal-ui/styled-system@0.3.0
+
 ## 0.1.0
 
 ### Minor Changes
