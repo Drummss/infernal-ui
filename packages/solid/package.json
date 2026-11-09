@@ -82,6 +82,7 @@
     "@storybook/addon-links": "^10.2.9",
     "@storybook/addon-vitest": "^10.2.9",
     "@storybook/builder-vite": "^10.2.9",
+    "@types/node": "^24.12.4",
     "@vitest/browser": "^4.0.18",
     "@vitest/browser-playwright": "^4.0.18",
     "@vitest/coverage-v8": "^4.0.18",
@@ -95,9 +96,9 @@
     "vitest": "^4.0.18"
   },
   "dependencies": {
+    "@ark-ui/solid": "^5.31.0",
     "@infernal-ui/preset": "workspace:*",
-    "@infernal-ui/styled-system": "workspace:*",
-    "@ark-ui/solid": "^5.31.0"
+    "@infernal-ui/styled-system": "workspace:*"
   },
   "peerDependencies": {
     "solid-js": "^1.9.11"

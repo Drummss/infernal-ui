@@ -2,7 +2,7 @@ import { heading } from '@infernal-ui/styled-system/recipes';
 import type { RecipeVariantProps } from '@infernal-ui/styled-system/types';
 import { splitProps } from 'solid-js';
 import type { ElementType, InfernalProps } from '../../types/types';
-import { Box, type BoxProps } from '../box';
+import { Box } from '../box';
 
 export type HeadingRecipeVariants = RecipeVariantProps<typeof heading>;
 

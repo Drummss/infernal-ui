@@ -12,13 +12,18 @@ import { fieldDocPage } from '../content/docs/pages/components/field/field';
 import { fieldsetDocPage } from '../content/docs/pages/components/fieldset/fieldset';
 import { flexDocPage } from '../content/docs/pages/components/flex/flex';
 import { headingDocPage } from '../content/docs/pages/components/heading/heading';
+import { iconDocPage } from '../content/docs/pages/components/icon/icon';
 import { inputDocPage } from '../content/docs/pages/components/input/input';
+import { linkDocPage } from '../content/docs/pages/components/link/link';
 import { menuDocsPage } from '../content/docs/pages/components/menu/menu';
 import { radioGroupDocPage } from '../content/docs/pages/components/radio-group/radio-group';
 import { selectDocPage } from '../content/docs/pages/components/select/select';
 import { textDocPage } from '../content/docs/pages/components/text/text';
 import { textareaDocPage } from '../content/docs/pages/components/textarea/textarea';
+import { contributionDocPage } from '../content/docs/pages/overview/contribution';
 import { installationDocPage } from '../content/docs/pages/overview/installation';
+import { preludeDocPage } from '../content/docs/pages/overview/prelude';
+import { themingDocPage } from '../content/docs/pages/overview/theming';
 
 type DocsGroup = {
   title: string;
@@ -35,7 +40,12 @@ type DocsSection = {
 const gettingStartedDocsGrouped: DocsGroup[] = [
   {
     title: installationDocPage.category,
-    pages: [installationDocPage],
+    pages: [
+      preludeDocPage,
+      installationDocPage,
+      themingDocPage,
+      contributionDocPage,
+    ],
   },
 ];
 
@@ -46,7 +56,7 @@ const componentDocsGrouped: DocsGroup[] = [
   },
   {
     title: headingDocPage.category,
-    pages: [headingDocPage, textDocPage],
+    pages: [headingDocPage, textDocPage, linkDocPage],
   },
   {
     title: alertDocPage.category,
@@ -55,6 +65,10 @@ const componentDocsGrouped: DocsGroup[] = [
   {
     title: buttonDocPage.category,
     pages: [buttonDocPage],
+  },
+  {
+    title: iconDocPage.category,
+    pages: [iconDocPage],
   },
   {
     title: radioGroupDocPage.category,
@@ -78,7 +92,7 @@ export const docsSections: DocsSection[] = [
   {
     title: 'Getting Started',
     basePath: '/docs/get-started',
-    landingPage: installationDocPage,
+    landingPage: preludeDocPage,
     groups: gettingStartedDocsGrouped,
   },
   {
