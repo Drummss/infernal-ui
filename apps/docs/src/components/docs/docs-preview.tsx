@@ -22,7 +22,7 @@ const SwitcherButton = (
       userSelect="none"
       onClick={props.onSelected}
     >
-      Preview
+      {props.children}
     </Box>
   );
 };

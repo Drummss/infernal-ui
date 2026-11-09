@@ -12,13 +12,15 @@
     "jsxImportSource": "solid-js",
     "types": ["vite/client"],
     "paths": {
-      "#.storybook/*": ["./.storybook/*"]
+      "#.storybook/*": ["./.storybook/*"],
+      "@infernal-ui/styled-system/*": ["../styled-system/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.d.ts"],
   "exclude": [
     ".storybook/**/*",
     "**/*.stories.tsx",
+    "styled-system/**/*",
     "node_modules",
     "dist",
     "storybook-static"
