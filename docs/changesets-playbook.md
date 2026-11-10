@@ -23,7 +23,7 @@ These packages are configured as a fixed version group, so they release on the s
 - CI `version-pr` workflow:
   - Creates/updates the Changesets version PR from merged changesets on `main`.
 - CI `publish` workflow:
-  - Publishes only when the version PR branch (`changeset-release/*`) is merged.
+  - Publishes when the version PR branch (`changeset-release/*`) is merged, or when manually triggered from `main`.
 
 ## When to Create a Changeset
 
@@ -75,7 +75,8 @@ CI-owned release commands (do not run locally):
 2. `version-pr.yml` runs and creates/updates the Changesets version PR.
 3. No publish happens at this stage.
 4. Maintainer merges the version PR.
-5. `publish.yml` runs (only for merged `changeset-release/*` PRs), validates with `pnpm ci:check`, then runs `pnpm release`.
+5. `publish.yml` runs for the merged `changeset-release/*` PR, validates with `pnpm ci:check`, then runs `pnpm release`.
+
 
 ## Pre-Release Ownership
 
